@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Ju Data Source-->
         <scene sceneID="428-Ce-B4X">
             <objects>
                 <tableViewController id="4Qo-UC-cZi" customClass="JuEditTableViewController" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I8Y-Ek-Qsh" id="1rT-43-DBZ">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -27,6 +27,7 @@
                         <connections>
                             <outlet property="dataSource" destination="4Qo-UC-cZi" id="HFc-hq-32E"/>
                             <outlet property="delegate" destination="4Qo-UC-cZi" id="Egh-k7-gtj"/>
+                            <outlet property="juDataSource" destination="4Qo-UC-cZi" id="PDf-S6-cSS"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="4Ow-05-DV8"/>

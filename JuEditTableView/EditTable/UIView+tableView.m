@@ -10,24 +10,25 @@
 
 @implementation UIView (tableView)
 -(NSIndexPath *)juSubViewTable:(UITableView *)tableView{
-    UIView *superView=self.superview;
+    UIView *superView=self;
     if (!superView) return [NSIndexPath indexPathWithIndex:1];
     while (superView) {
-        superView=[superView superview];
         if ([superView isKindOfClass:[UITableViewCell class]]) {
             break;
         }
+         superView=[superView superview];
     }
     NSIndexPath *_ju_editIndexPath = [tableView indexPathForCell:(UITableViewCell *)superView];
     return _ju_editIndexPath;
 }
 -(UITableView *)juTableView{
-    UIView *superView=self.superview;
+    UIView *superView=self;
     while (superView) {
-        superView=[superView superview];
+       
         if ([superView isKindOfClass:[UITableView class]]) {
             break;
         }
+         superView=[superView superview];
     }
     return (UITableView *)superView;
 }

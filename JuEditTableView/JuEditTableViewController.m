@@ -9,7 +9,7 @@
 #import "JuEditTableViewController.h"
 #import "JuEditTableView.h"
 #import "EditTableViewCell.h"
-@interface JuEditTableViewController ()
+@interface JuEditTableViewController ()<EditTableViewDataSource>
 
 @end
 
@@ -17,21 +17,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray *items=@[@"编辑",@"删除"];
-    NSMutableArray *arrItemView=[NSMutableArray array];
-    for (int i=0; i<items.count; i++) {
-        JuTableRowAction *btnItems=[JuTableRowAction rowActionWithTitle:items[i]  handler:^(JuTableRowAction *action, NSIndexPath *indexPath) {
-             NSLog(@"当前行 %@ %@",action,indexPath);
-        }];
-        if (i==1) {
-            btnItems.backgroundColor=[UIColor redColor];
-        }else{
-            btnItems.backgroundColor=[UIColor orangeColor];
-        }
-        [arrItemView addObject:btnItems];
-    }
-    JuEditTableView *table=(JuEditTableView *)self.tableView;
-    table.ju_leftRowAction=arrItemView;
+//    NSArray *items=@[@"编辑",@"删除"];
+//    NSMutableArray *arrItemView=[NSMutableArray array];
+//    for (int i=0; i<items.count; i++) {
+//        JuTableRowAction *btnItems=[JuTableRowAction rowActionWithTitle:items[i]  handler:^(JuTableRowAction *action, NSIndexPath *indexPath) {
+//             NSLog(@"当前行 %@ %@",action,indexPath);
+//        }];
+//        if (i==1) {
+//            btnItems.backgroundColor=[UIColor redColor];
+//        }else{
+//            btnItems.backgroundColor=[UIColor orangeColor];
+//        }
+//        [arrItemView addObject:btnItems];
+//    }
+//    JuEditTableView *table=(JuEditTableView *)self.tableView;
+//    table.ju_leftRowAction=arrItemView;
      [self.tableView registerNib:[UINib nibWithNibName:@"EditTableViewCell" bundle:nil] forCellReuseIdentifier:@"EditTableViewCell"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -55,10 +55,46 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return 10;
 }
+-(BOOL)juTableView:(JuEditTableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+- (NSArray<JuTableRowAction *> *)juTableView:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *items=@[@"编辑",@"删除"];
+    if (indexPath.row%2==1) {
+        items=@[@"编辑"];
+    }
+    NSMutableArray *arrItemView=[NSMutableArray array];
+    for (int i=0; i<items.count; i++) {
+        JuTableRowAction *btnItems=[JuTableRowAction rowActionWithTitle:items[i]  handler:^(JuTableRowAction *action, NSIndexPath *indexPath) {
+            NSLog(@"当前行 %@ %@",action,indexPath);
+        }];
+        if (i==1) {
+            btnItems.backgroundColor=[UIColor redColor];
+        }else{
+            btnItems.backgroundColor=[UIColor orangeColor];
+        }
+        [arrItemView addObject:btnItems];
+    }
+    return  arrItemView;
 
+}
+- (NSArray<JuTableRowAction *> *)juTableViewLeft:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *items=@[@"标记未已读"];
+   
+    NSMutableArray *arrItemView=[NSMutableArray array];
+    for (int i=0; i<items.count; i++) {
+        JuTableRowAction *btnItems=[JuTableRowAction rowActionWithTitle:items[i]  handler:^(JuTableRowAction *action, NSIndexPath *indexPath) {
+            NSLog(@"当前行 %@ %@",action,indexPath);
+        }];
+       
+        btnItems.backgroundColor=[UIColor blueColor];
+        [arrItemView addObject:btnItems];
+    }
+    return  arrItemView;
+    
+}
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

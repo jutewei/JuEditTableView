@@ -17,7 +17,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    ju_contentView.isCanEdit=YES;
     // Initialization code
 }
 

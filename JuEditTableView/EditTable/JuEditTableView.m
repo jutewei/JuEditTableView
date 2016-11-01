@@ -39,13 +39,24 @@
         [self.juDelegate JuHideEditCell];
     }
 }
--(NSIndexPath *)juSubView:(UIView *)subview{
-    _ju_editIndexPath = [subview juSubViewTable:self];
-    [self deselectRowAtIndexPath:_ju_editIndexPath animated:YES];
-    return _ju_editIndexPath;
+-(BOOL)isCanEdit:(UIView *)subView{
+    if ([self.juDataSource respondsToSelector:@selector(juTableView:canEditRowAtIndexPath:)]) {
+        return   [self.juDataSource juTableView:self canEditRowAtIndexPath:[subView juSubViewTable:self]];
+    }
+    return NO;
 }
-
-
+-(NSArray<UIView*>*)ju_leftRowAction:(UIView *)subView{
+    if ([self.juDataSource respondsToSelector:@selector(juTableView: editActionsForRowAtIndexPath:)]) {
+        return [self.juDataSource juTableView:self editActionsForRowAtIndexPath:[subView juSubViewTable:self]];
+    }
+    return _ju_leftRowAction;
+}
+-(NSArray<UIView*>*)ju_RightRowAction:(UIView *)subView{
+    if ([self.juDataSource respondsToSelector:@selector(juTableViewLeft: editActionsForRowAtIndexPath:)]) {
+        return [self.juDataSource juTableViewLeft:self editActionsForRowAtIndexPath:[subView juSubViewTable:self]];
+    }
+    return _ju_RightRowAction;
+}
 @end
 
 //下步操作后有跟新数据
@@ -73,7 +84,7 @@
     return self;
 
 }
--(void)juTouchEdit:(UIButton *)sender{
+-(void)juTouchEdit:(JuTableRowAction *)sender{
     if (self.ju_handler) {
         JuEditTableView *table=(JuEditTableView *)[self juTableView];
         [table juTableEndEdit];
