@@ -135,16 +135,11 @@
 -(void)juBeganEdit:(CGFloat)originX{
 
     if (fabs(originX)>40) {
-         CGFloat originx=self.frame.origin.x;
-        if (ju_EditStatus==JuEditStatusRight&&originX<0) {
+        CGFloat originx=self.frame.origin.x;
+        if ((ju_EditStatus==JuEditStatusRight&&originX<0)||(ju_EditStatus==JuEditStatusLeft&&originX>0)) {
              [self juEndEdit];
             return;
         }
-        else if(ju_EditStatus==JuEditStatusLeft&&originX>0){
-             [self juEndEdit];
-            return;
-        }
-        
         if (ju_EditStatus==JuEditStatusAnimate) return;
         ju_EditStatus=JuEditStatusAnimate;
          [self shSetTableIndex];///< 出现编辑table不可滑动
@@ -180,7 +175,7 @@
         }
         CGFloat translationX = [pan translationInView:pan.view].x;
         if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusRight&&translationX<0)||(ju_EditStatus==JuEditStatusLeft&&translationX>0)) {///< 不能拖拽或者拖拽方向与开始相反
-            pan.view.transform = CGAffineTransformMakeTranslation(MIN(translationX*0.4, 10), 0);
+            pan.view.transform = CGAffineTransformMakeTranslation(MIN(translationX*0.4, 18), 0);
             return;
         }
        
