@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JuEditCellContentView.h"
+#import "JuEditContentView.h"
 @interface EditTableViewCell : UITableViewCell{
     
-    __weak IBOutlet JuEditCellContentView *ju_contentView;
+    __weak IBOutlet JuEditContentView *ju_contentView;
 }
 
 @end

@@ -13,8 +13,6 @@
 		EB4F43451DC891A0000CA0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB4F43441DC891A0000CA0A7 /* Assets.xcassets */; };
 		EB4F43481DC891A0000CA0A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4F43461DC891A0000CA0A7 /* LaunchScreen.storyboard */; };
 		EB4F43521DC891BD000CA0A7 /* JuEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43501DC891BD000CA0A7 /* JuEditTableViewController.m */; };
-		EB4F43581DC891F2000CA0A7 /* JuEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43551DC891F2000CA0A7 /* JuEditTableView.m */; };
-		EB4F43591DC891F2000CA0A7 /* JuEditCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43571DC891F2000CA0A7 /* JuEditCellContentView.m */; };
 		EB4F43671DC89202000CA0A7 /* JuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F435C1DC89202000CA0A7 /* JuLayout.m */; };
 		EB4F43681DC89202000CA0A7 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F435E1DC89202000CA0A7 /* UIView+Frame.m */; };
 		EB4F43691DC89202000CA0A7 /* UIView+JuConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43601DC89202000CA0A7 /* UIView+JuConstraint.m */; };
@@ -23,7 +21,9 @@
 		EB4F436C1DC89202000CA0A7 /* UIView+StringFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43661DC89202000CA0A7 /* UIView+StringFrame.m */; };
 		EB4F43751DC893E1000CA0A7 /* EditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */; };
 		EB4F43791DC8940F000CA0A7 /* EditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */; };
-		EB4F437C1DC89B0E000CA0A7 /* UIView+tableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F437B1DC89B0E000CA0A7 /* UIView+tableView.m */; };
+		EB4F43841DC8A135000CA0A7 /* JuEditContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F437F1DC8A135000CA0A7 /* JuEditContentView.m */; };
+		EB4F43851DC8A135000CA0A7 /* JuEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43811DC8A135000CA0A7 /* JuEditTableView.m */; };
+		EB4F43861DC8A135000CA0A7 /* UIView+tableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43831DC8A135000CA0A7 /* UIView+tableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,10 +37,6 @@
 		EB4F43491DC891A0000CA0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB4F434F1DC891BD000CA0A7 /* JuEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditTableViewController.h; sourceTree = "<group>"; };
 		EB4F43501DC891BD000CA0A7 /* JuEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditTableViewController.m; sourceTree = "<group>"; };
-		EB4F43541DC891F2000CA0A7 /* JuEditTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditTableView.h; sourceTree = "<group>"; };
-		EB4F43551DC891F2000CA0A7 /* JuEditTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditTableView.m; sourceTree = "<group>"; };
-		EB4F43561DC891F2000CA0A7 /* JuEditCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditCellContentView.h; sourceTree = "<group>"; };
-		EB4F43571DC891F2000CA0A7 /* JuEditCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditCellContentView.m; sourceTree = "<group>"; };
 		EB4F435B1DC89202000CA0A7 /* JuLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuLayout.h; sourceTree = "<group>"; };
 		EB4F435C1DC89202000CA0A7 /* JuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuLayout.m; sourceTree = "<group>"; };
 		EB4F435D1DC89202000CA0A7 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
@@ -56,8 +52,12 @@
 		EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTableViewCell.xib; sourceTree = "<group>"; };
 		EB4F43771DC8940F000CA0A7 /* EditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewCell.h; sourceTree = "<group>"; };
 		EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewCell.m; sourceTree = "<group>"; };
-		EB4F437A1DC89B0E000CA0A7 /* UIView+tableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+tableView.h"; sourceTree = "<group>"; };
-		EB4F437B1DC89B0E000CA0A7 /* UIView+tableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+tableView.m"; sourceTree = "<group>"; };
+		EB4F437E1DC8A135000CA0A7 /* JuEditContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditContentView.h; sourceTree = "<group>"; };
+		EB4F437F1DC8A135000CA0A7 /* JuEditContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditContentView.m; sourceTree = "<group>"; };
+		EB4F43801DC8A135000CA0A7 /* JuEditTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditTableView.h; sourceTree = "<group>"; };
+		EB4F43811DC8A135000CA0A7 /* JuEditTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditTableView.m; sourceTree = "<group>"; };
+		EB4F43821DC8A135000CA0A7 /* UIView+tableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+tableView.h"; sourceTree = "<group>"; };
+		EB4F43831DC8A135000CA0A7 /* UIView+tableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+tableView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +90,7 @@
 		EB4F43371DC891A0000CA0A7 /* JuEditTableView */ = {
 			isa = PBXGroup;
 			children = (
+				EB4F437D1DC8A135000CA0A7 /* EditTable */,
 				EB4F435A1DC89202000CA0A7 /* Layout */,
 				EB4F433B1DC891A0000CA0A7 /* AppDelegate.h */,
 				EB4F433C1DC891A0000CA0A7 /* AppDelegate.m */,
@@ -98,12 +99,6 @@
 				EB4F43771DC8940F000CA0A7 /* EditTableViewCell.h */,
 				EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */,
 				EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */,
-				EB4F43541DC891F2000CA0A7 /* JuEditTableView.h */,
-				EB4F43551DC891F2000CA0A7 /* JuEditTableView.m */,
-				EB4F43561DC891F2000CA0A7 /* JuEditCellContentView.h */,
-				EB4F43571DC891F2000CA0A7 /* JuEditCellContentView.m */,
-				EB4F437A1DC89B0E000CA0A7 /* UIView+tableView.h */,
-				EB4F437B1DC89B0E000CA0A7 /* UIView+tableView.m */,
 				EB4F43411DC891A0000CA0A7 /* Main.storyboard */,
 				EB4F43441DC891A0000CA0A7 /* Assets.xcassets */,
 				EB4F43461DC891A0000CA0A7 /* LaunchScreen.storyboard */,
@@ -138,6 +133,19 @@
 				EB4F43661DC89202000CA0A7 /* UIView+StringFrame.m */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		EB4F437D1DC8A135000CA0A7 /* EditTable */ = {
+			isa = PBXGroup;
+			children = (
+				EB4F437E1DC8A135000CA0A7 /* JuEditContentView.h */,
+				EB4F437F1DC8A135000CA0A7 /* JuEditContentView.m */,
+				EB4F43801DC8A135000CA0A7 /* JuEditTableView.h */,
+				EB4F43811DC8A135000CA0A7 /* JuEditTableView.m */,
+				EB4F43821DC8A135000CA0A7 /* UIView+tableView.h */,
+				EB4F43831DC8A135000CA0A7 /* UIView+tableView.m */,
+			);
+			path = EditTable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,16 +220,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4F43851DC8A135000CA0A7 /* JuEditTableView.m in Sources */,
 				EB4F436A1DC89202000CA0A7 /* UIView+JuLayGroup.m in Sources */,
 				EB4F436C1DC89202000CA0A7 /* UIView+StringFrame.m in Sources */,
 				EB4F43681DC89202000CA0A7 /* UIView+Frame.m in Sources */,
 				EB4F43671DC89202000CA0A7 /* JuLayout.m in Sources */,
-				EB4F43581DC891F2000CA0A7 /* JuEditTableView.m in Sources */,
+				EB4F43841DC8A135000CA0A7 /* JuEditContentView.m in Sources */,
+				EB4F43861DC8A135000CA0A7 /* UIView+tableView.m in Sources */,
 				EB4F433D1DC891A0000CA0A7 /* AppDelegate.m in Sources */,
-				EB4F437C1DC89B0E000CA0A7 /* UIView+tableView.m in Sources */,
 				EB4F43521DC891BD000CA0A7 /* JuEditTableViewController.m in Sources */,
 				EB4F43691DC89202000CA0A7 /* UIView+JuConstraint.m in Sources */,
-				EB4F43591DC891F2000CA0A7 /* JuEditCellContentView.m in Sources */,
 				EB4F433A1DC891A0000CA0A7 /* main.m in Sources */,
 				EB4F436B1DC89202000CA0A7 /* UIView+JuLayout.m in Sources */,
 				EB4F43791DC8940F000CA0A7 /* EditTableViewCell.m in Sources */,
@@ -383,6 +391,7 @@
 				EB4F434E1DC891A0000CA0A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

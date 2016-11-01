@@ -6,11 +6,11 @@
 //  Copyright © 2016年 Juvid. All rights reserved.
 //
 
-#import "JuEditCellContentView.h"
+#import "JuEditContentView.h"
 #import "UIView+Frame.h"
 #import "JuEditTableView.h"
 #import "UIView+tableView.h"
-@interface JuEditCellContentView ()<UIGestureRecognizerDelegate,EditTableViewDelegate>{
+@interface JuEditContentView ()<UIGestureRecognizerDelegate,EditTableViewDelegate>{
     UIPanGestureRecognizer *ju_panGesture;
     UITapGestureRecognizer *ju_tapGesture;
     UIView *ju_viewBack;
@@ -23,7 +23,7 @@
 @property (nonatomic,strong)NSArray<UIView*> *ju_RightRowAction;
 @end
 
-@implementation JuEditCellContentView
+@implementation JuEditContentView
 
 
 -(void)addPanGesture{

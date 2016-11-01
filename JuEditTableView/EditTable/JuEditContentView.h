@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JuEditCellContentView : UIView
+@interface JuEditContentView : UIView
 -(void)juEndEdit;
 @property (nonatomic) BOOL isCanEdit;
 @end
