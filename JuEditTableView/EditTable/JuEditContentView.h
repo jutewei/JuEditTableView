@@ -19,5 +19,5 @@ typedef NS_ENUM(NSInteger,JuEditStatus){
 
 @interface JuEditContentView : UIView
 -(void)juEndEdit;
-@property (nonatomic) BOOL isCanEdit;
+@property (nonatomic,readonly) BOOL isCanEdit;
 @end
