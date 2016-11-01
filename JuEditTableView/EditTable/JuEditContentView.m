@@ -174,21 +174,17 @@
         ju_EditStatus=JuEditStatusFirstDrag;
     }
     else{
-       
         if(pan.state==UIGestureRecognizerStateChanged&&ju_EditStatus==JuEditStatusFirstDrag){
-             CGPoint translation = [pan translationInView:pan.view];
-//            isLeftPan=translation.x<0;///左滑动
-//            ju_EditStatus=translation.x<0?JuEditStatusLeft:JuEditStatusRight;
-//            isCanDrag=[self juSetRowActions:translation.x<0];///< 开始拖动时初始化编辑按钮
+            CGPoint translation = [pan translationInView:pan.view];
             ju_EditStatus=[self juSetRowActions:translation.x<0];
         }
-        CGPoint translation = [pan translationInView:pan.view];
-        if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusRight&&translation.x<0)||(ju_EditStatus==JuEditStatusLeft&&translation.x>0)) {///< 不能拖拽或者拖拽方向与开始相反
-            pan.view.transform = CGAffineTransformMakeTranslation(MIN(translation.x*0.4, 10), 0);
+        CGFloat translationX = [pan translationInView:pan.view].x;
+        if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusRight&&translationX<0)||(ju_EditStatus==JuEditStatusLeft&&translationX>0)) {///< 不能拖拽或者拖拽方向与开始相反
+            pan.view.transform = CGAffineTransformMakeTranslation(MIN(translationX*0.4, 10), 0);
             return;
         }
        
-        CGFloat transX=fabs(translation.x);
+        CGFloat transX=fabs(translationX);
         CGFloat originX;
         CGFloat totalX=frame.origin.x;
         if (fabs(totalX)>ju_itemsTotalW) {
@@ -200,7 +196,7 @@
         }else{///< 未到边界无阻尼
             originX=transX;
         }
-        if (translation.x<0) {
+        if (translationX<0) {
             originX=-originX;
         }
         pan.view.transform = CGAffineTransformMakeTranslation(originX+viewOriginX, 0);
