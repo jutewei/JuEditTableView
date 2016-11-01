@@ -83,7 +83,7 @@
     return [self.sh_tableView ju_RightRowAction:self];
 }
 
--(BOOL)juSetRowActions:(BOOL)isLeft{
+-(JuEditStatus)juSetRowActions:(BOOL)isLeft{
     UIView *supView=self.superview;
     if (!supView) return NO;
     NSArray *items=isLeft?self.ju_leftRowAction:self.ju_RightRowAction;
@@ -109,6 +109,7 @@
     }
     ju_viewBack.ju_Width.constant=itemLeft;
     ju_itemsTotalW=itemLeft;
+    
     return items.count?(isLeft?JuEditStatusLeft:JuEditStatusRight):JuEditStatusNone;
 }
 ////< 点击当前cell结束编辑
@@ -134,11 +135,21 @@
 -(void)juBeganEdit:(CGFloat)originX{
 
     if (fabs(originX)>40) {
+         CGFloat originx=self.frame.origin.x;
+        if (ju_EditStatus==JuEditStatusRight&&originX<0) {
+             [self juEndEdit];
+            return;
+        }
+        else if(ju_EditStatus==JuEditStatusLeft&&originX>0){
+             [self juEndEdit];
+            return;
+        }
+        
         if (ju_EditStatus==JuEditStatusAnimate) return;
         ju_EditStatus=JuEditStatusAnimate;
          [self shSetTableIndex];///< 出现编辑table不可滑动
         [UIView animateWithDuration:0.3 animations:^{
-            CGFloat originx=self.frame.origin.x;
+           
             self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(originx<0?-1:1), 0);
         }completion:^(BOOL finished) {
             [self addTapGesture];
@@ -171,12 +182,12 @@
 //            isCanDrag=[self juSetRowActions:translation.x<0];///< 开始拖动时初始化编辑按钮
             ju_EditStatus=[self juSetRowActions:translation.x<0];
         }
-        
-        if (ju_EditStatus==JuEditStatusNone) {
+        CGPoint translation = [pan translationInView:pan.view];
+        if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusRight&&translation.x<0)||(ju_EditStatus==JuEditStatusLeft&&translation.x>0)) {///< 不能拖拽或者拖拽方向与开始相反
+            pan.view.transform = CGAffineTransformMakeTranslation(MIN(translation.x*0.4, 10), 0);
             return;
         }
-        
-        CGPoint translation = [pan translationInView:pan.view];
+       
         CGFloat transX=fabs(translation.x);
         CGFloat originX;
         CGFloat totalX=frame.origin.x;
