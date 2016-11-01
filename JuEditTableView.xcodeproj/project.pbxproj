@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB4F433A1DC891A0000CA0A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43391DC891A0000CA0A7 /* main.m */; };
+		EB4F433D1DC891A0000CA0A7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F433C1DC891A0000CA0A7 /* AppDelegate.m */; };
+		EB4F43431DC891A0000CA0A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4F43411DC891A0000CA0A7 /* Main.storyboard */; };
+		EB4F43451DC891A0000CA0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB4F43441DC891A0000CA0A7 /* Assets.xcassets */; };
+		EB4F43481DC891A0000CA0A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4F43461DC891A0000CA0A7 /* LaunchScreen.storyboard */; };
+		EB4F43521DC891BD000CA0A7 /* JuEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43501DC891BD000CA0A7 /* JuEditTableViewController.m */; };
+		EB4F43581DC891F2000CA0A7 /* JuEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43551DC891F2000CA0A7 /* JuEditTableView.m */; };
+		EB4F43591DC891F2000CA0A7 /* JuEditCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43571DC891F2000CA0A7 /* JuEditCellContentView.m */; };
+		EB4F43671DC89202000CA0A7 /* JuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F435C1DC89202000CA0A7 /* JuLayout.m */; };
+		EB4F43681DC89202000CA0A7 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F435E1DC89202000CA0A7 /* UIView+Frame.m */; };
+		EB4F43691DC89202000CA0A7 /* UIView+JuConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43601DC89202000CA0A7 /* UIView+JuConstraint.m */; };
+		EB4F436A1DC89202000CA0A7 /* UIView+JuLayGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43621DC89202000CA0A7 /* UIView+JuLayGroup.m */; };
+		EB4F436B1DC89202000CA0A7 /* UIView+JuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43641DC89202000CA0A7 /* UIView+JuLayout.m */; };
+		EB4F436C1DC89202000CA0A7 /* UIView+StringFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43661DC89202000CA0A7 /* UIView+StringFrame.m */; };
+		EB4F43751DC893E1000CA0A7 /* EditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */; };
+		EB4F43791DC8940F000CA0A7 /* EditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */; };
+		EB4F437C1DC89B0E000CA0A7 /* UIView+tableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F437B1DC89B0E000CA0A7 /* UIView+tableView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EB4F43351DC891A0000CA0A7 /* JuEditTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuEditTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB4F43391DC891A0000CA0A7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EB4F433B1DC891A0000CA0A7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EB4F433C1DC891A0000CA0A7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EB4F43421DC891A0000CA0A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EB4F43441DC891A0000CA0A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB4F43471DC891A0000CA0A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EB4F43491DC891A0000CA0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB4F434F1DC891BD000CA0A7 /* JuEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditTableViewController.h; sourceTree = "<group>"; };
+		EB4F43501DC891BD000CA0A7 /* JuEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditTableViewController.m; sourceTree = "<group>"; };
+		EB4F43541DC891F2000CA0A7 /* JuEditTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditTableView.h; sourceTree = "<group>"; };
+		EB4F43551DC891F2000CA0A7 /* JuEditTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditTableView.m; sourceTree = "<group>"; };
+		EB4F43561DC891F2000CA0A7 /* JuEditCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditCellContentView.h; sourceTree = "<group>"; };
+		EB4F43571DC891F2000CA0A7 /* JuEditCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditCellContentView.m; sourceTree = "<group>"; };
+		EB4F435B1DC89202000CA0A7 /* JuLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuLayout.h; sourceTree = "<group>"; };
+		EB4F435C1DC89202000CA0A7 /* JuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuLayout.m; sourceTree = "<group>"; };
+		EB4F435D1DC89202000CA0A7 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		EB4F435E1DC89202000CA0A7 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		EB4F435F1DC89202000CA0A7 /* UIView+JuConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JuConstraint.h"; sourceTree = "<group>"; };
+		EB4F43601DC89202000CA0A7 /* UIView+JuConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JuConstraint.m"; sourceTree = "<group>"; };
+		EB4F43611DC89202000CA0A7 /* UIView+JuLayGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JuLayGroup.h"; sourceTree = "<group>"; };
+		EB4F43621DC89202000CA0A7 /* UIView+JuLayGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JuLayGroup.m"; sourceTree = "<group>"; };
+		EB4F43631DC89202000CA0A7 /* UIView+JuLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JuLayout.h"; sourceTree = "<group>"; };
+		EB4F43641DC89202000CA0A7 /* UIView+JuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JuLayout.m"; sourceTree = "<group>"; };
+		EB4F43651DC89202000CA0A7 /* UIView+StringFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+StringFrame.h"; sourceTree = "<group>"; };
+		EB4F43661DC89202000CA0A7 /* UIView+StringFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+StringFrame.m"; sourceTree = "<group>"; };
+		EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTableViewCell.xib; sourceTree = "<group>"; };
+		EB4F43771DC8940F000CA0A7 /* EditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewCell.h; sourceTree = "<group>"; };
+		EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewCell.m; sourceTree = "<group>"; };
+		EB4F437A1DC89B0E000CA0A7 /* UIView+tableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+tableView.h"; sourceTree = "<group>"; };
+		EB4F437B1DC89B0E000CA0A7 /* UIView+tableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+tableView.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB4F43321DC891A0000CA0A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB4F432C1DC891A0000CA0A7 = {
+			isa = PBXGroup;
+			children = (
+				EB4F43371DC891A0000CA0A7 /* JuEditTableView */,
+				EB4F43361DC891A0000CA0A7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB4F43361DC891A0000CA0A7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB4F43351DC891A0000CA0A7 /* JuEditTableView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB4F43371DC891A0000CA0A7 /* JuEditTableView */ = {
+			isa = PBXGroup;
+			children = (
+				EB4F435A1DC89202000CA0A7 /* Layout */,
+				EB4F433B1DC891A0000CA0A7 /* AppDelegate.h */,
+				EB4F433C1DC891A0000CA0A7 /* AppDelegate.m */,
+				EB4F434F1DC891BD000CA0A7 /* JuEditTableViewController.h */,
+				EB4F43501DC891BD000CA0A7 /* JuEditTableViewController.m */,
+				EB4F43771DC8940F000CA0A7 /* EditTableViewCell.h */,
+				EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */,
+				EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */,
+				EB4F43541DC891F2000CA0A7 /* JuEditTableView.h */,
+				EB4F43551DC891F2000CA0A7 /* JuEditTableView.m */,
+				EB4F43561DC891F2000CA0A7 /* JuEditCellContentView.h */,
+				EB4F43571DC891F2000CA0A7 /* JuEditCellContentView.m */,
+				EB4F437A1DC89B0E000CA0A7 /* UIView+tableView.h */,
+				EB4F437B1DC89B0E000CA0A7 /* UIView+tableView.m */,
+				EB4F43411DC891A0000CA0A7 /* Main.storyboard */,
+				EB4F43441DC891A0000CA0A7 /* Assets.xcassets */,
+				EB4F43461DC891A0000CA0A7 /* LaunchScreen.storyboard */,
+				EB4F43491DC891A0000CA0A7 /* Info.plist */,
+				EB4F43381DC891A0000CA0A7 /* Supporting Files */,
+			);
+			path = JuEditTableView;
+			sourceTree = "<group>";
+		};
+		EB4F43381DC891A0000CA0A7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EB4F43391DC891A0000CA0A7 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EB4F435A1DC89202000CA0A7 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				EB4F435B1DC89202000CA0A7 /* JuLayout.h */,
+				EB4F435C1DC89202000CA0A7 /* JuLayout.m */,
+				EB4F435D1DC89202000CA0A7 /* UIView+Frame.h */,
+				EB4F435E1DC89202000CA0A7 /* UIView+Frame.m */,
+				EB4F435F1DC89202000CA0A7 /* UIView+JuConstraint.h */,
+				EB4F43601DC89202000CA0A7 /* UIView+JuConstraint.m */,
+				EB4F43611DC89202000CA0A7 /* UIView+JuLayGroup.h */,
+				EB4F43621DC89202000CA0A7 /* UIView+JuLayGroup.m */,
+				EB4F43631DC89202000CA0A7 /* UIView+JuLayout.h */,
+				EB4F43641DC89202000CA0A7 /* UIView+JuLayout.m */,
+				EB4F43651DC89202000CA0A7 /* UIView+StringFrame.h */,
+				EB4F43661DC89202000CA0A7 /* UIView+StringFrame.m */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB4F43341DC891A0000CA0A7 /* JuEditTableView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB4F434C1DC891A0000CA0A7 /* Build configuration list for PBXNativeTarget "JuEditTableView" */;
+			buildPhases = (
+				EB4F43311DC891A0000CA0A7 /* Sources */,
+				EB4F43321DC891A0000CA0A7 /* Frameworks */,
+				EB4F43331DC891A0000CA0A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JuEditTableView;
+			productName = JuEditTableView;
+			productReference = EB4F43351DC891A0000CA0A7 /* JuEditTableView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB4F432D1DC891A0000CA0A7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Juvid;
+				TargetAttributes = {
+					EB4F43341DC891A0000CA0A7 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = EB4F43301DC891A0000CA0A7 /* Build configuration list for PBXProject "JuEditTableView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB4F432C1DC891A0000CA0A7;
+			productRefGroup = EB4F43361DC891A0000CA0A7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB4F43341DC891A0000CA0A7 /* JuEditTableView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB4F43331DC891A0000CA0A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB4F43481DC891A0000CA0A7 /* LaunchScreen.storyboard in Resources */,
+				EB4F43451DC891A0000CA0A7 /* Assets.xcassets in Resources */,
+				EB4F43431DC891A0000CA0A7 /* Main.storyboard in Resources */,
+				EB4F43751DC893E1000CA0A7 /* EditTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB4F43311DC891A0000CA0A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB4F436A1DC89202000CA0A7 /* UIView+JuLayGroup.m in Sources */,
+				EB4F436C1DC89202000CA0A7 /* UIView+StringFrame.m in Sources */,
+				EB4F43681DC89202000CA0A7 /* UIView+Frame.m in Sources */,
+				EB4F43671DC89202000CA0A7 /* JuLayout.m in Sources */,
+				EB4F43581DC891F2000CA0A7 /* JuEditTableView.m in Sources */,
+				EB4F433D1DC891A0000CA0A7 /* AppDelegate.m in Sources */,
+				EB4F437C1DC89B0E000CA0A7 /* UIView+tableView.m in Sources */,
+				EB4F43521DC891BD000CA0A7 /* JuEditTableViewController.m in Sources */,
+				EB4F43691DC89202000CA0A7 /* UIView+JuConstraint.m in Sources */,
+				EB4F43591DC891F2000CA0A7 /* JuEditCellContentView.m in Sources */,
+				EB4F433A1DC891A0000CA0A7 /* main.m in Sources */,
+				EB4F436B1DC89202000CA0A7 /* UIView+JuLayout.m in Sources */,
+				EB4F43791DC8940F000CA0A7 /* EditTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EB4F43411DC891A0000CA0A7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB4F43421DC891A0000CA0A7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EB4F43461DC891A0000CA0A7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB4F43471DC891A0000CA0A7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EB4F434A1DC891A0000CA0A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB4F434B1DC891A0000CA0A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB4F434D1DC891A0000CA0A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JuEditTableView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wbitech.JuEditTableView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EB4F434E1DC891A0000CA0A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JuEditTableView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wbitech.JuEditTableView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB4F43301DC891A0000CA0A7 /* Build configuration list for PBXProject "JuEditTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB4F434A1DC891A0000CA0A7 /* Debug */,
+				EB4F434B1DC891A0000CA0A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB4F434C1DC891A0000CA0A7 /* Build configuration list for PBXNativeTarget "JuEditTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB4F434D1DC891A0000CA0A7 /* Debug */,
+				EB4F434E1DC891A0000CA0A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB4F432D1DC891A0000CA0A7 /* Project object */;
+}

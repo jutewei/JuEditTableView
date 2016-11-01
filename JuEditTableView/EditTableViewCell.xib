@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="C6W-uO-xbu" customClass="EditTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C6W-uO-xbu" id="zPp-5Q-YC4">
+                <frame key="frameInset" width="375" height="67"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5b-LZ-unC" customClass="JuEditCellContentView">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7F8-fO-Clb">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="右边" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQU-Yw-LCB">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="XQU-Yw-LCB" secondAttribute="trailing" constant="8" id="11u-fc-Gwh"/>
+                            <constraint firstAttribute="trailing" secondItem="7F8-fO-Clb" secondAttribute="trailing" constant="311" id="9hY-52-DZV"/>
+                            <constraint firstItem="7F8-fO-Clb" firstAttribute="centerY" secondItem="f5b-LZ-unC" secondAttribute="centerY" id="O2o-Af-rps"/>
+                            <constraint firstItem="XQU-Yw-LCB" firstAttribute="centerY" secondItem="f5b-LZ-unC" secondAttribute="centerY" id="cXq-Mt-LXY"/>
+                            <constraint firstItem="7F8-fO-Clb" firstAttribute="leading" secondItem="f5b-LZ-unC" secondAttribute="leading" constant="22" id="qta-Wo-R5N"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="f5b-LZ-unC" secondAttribute="trailing" id="3Ev-UK-baA"/>
+                    <constraint firstItem="f5b-LZ-unC" firstAttribute="leading" secondItem="zPp-5Q-YC4" secondAttribute="leading" id="BbX-gs-yJK"/>
+                    <constraint firstAttribute="bottom" secondItem="f5b-LZ-unC" secondAttribute="bottom" id="PP2-5H-b12"/>
+                    <constraint firstItem="f5b-LZ-unC" firstAttribute="top" secondItem="zPp-5Q-YC4" secondAttribute="top" id="aHz-0D-acS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ju_contentView" destination="f5b-LZ-unC" id="aJg-bd-BgD"/>
+            </connections>
+            <point key="canvasLocation" x="-37.5" y="76"/>
+        </tableViewCell>
+    </objects>
+</document>
