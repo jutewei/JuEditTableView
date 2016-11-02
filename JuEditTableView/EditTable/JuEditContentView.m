@@ -52,14 +52,9 @@
 -(void)didMoveToSuperview{
     [super didMoveToSuperview];
     if (self.superview) {
-        ju_EditStatus=JuEditStatusLoad;
-    }
-}
--(void)didMoveToWindow{
-    [super didMoveToSuperview];
-    if (self.superview&&ju_EditStatus==JuEditStatusLoad) {
-        self.isCanEdit=[self.sh_tableView isCanEdit:self];
-        ju_EditStatus=JuEditStatusNone;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{///< 防止获取不到 indexPath
+            self.isCanEdit=[self.sh_tableView isCanEdit:self];
+        });
     }
 }
 -(void)setIsCanEdit:(BOOL)isCanEdit{
@@ -150,8 +145,8 @@
         }
         if (ju_EditStatus==JuEditStatusAnimate) return;
         ju_EditStatus=JuEditStatusAnimate;
-//         [self shSetTableIndex];///< 出现编辑table不可滑动
-        [UIView animateWithDuration:0.3 animations:^{
+         [self shSetTableIndex];///< 出现编辑table不可滑动
+        [UIView animateWithDuration:0.2 animations:^{
            
             self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(originx<0?-1:1), 0);
         }completion:^(BOOL finished) {
