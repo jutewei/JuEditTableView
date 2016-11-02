@@ -69,8 +69,9 @@
 }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     CGPoint translation = [ju_panGesture translationInView:self];
+//    NSLog(@"X:%f  Y:%f",translation.x,translation.y);
     if (gestureRecognizer==ju_panGesture) {
-        if (fabs(translation.y) > fabs(translation.x)) {
+        if (fabs(translation.y)*1.2 >= fabs(translation.x)) {
             return NO; // 手势冲突，解决tableview不可拖动
         }
     }
