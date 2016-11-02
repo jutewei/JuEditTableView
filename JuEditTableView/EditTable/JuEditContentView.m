@@ -29,16 +29,20 @@
 
 
 -(void)addPanGesture{
-    ju_panGesture= [[UIPanGestureRecognizer alloc] initWithTarget:self  action:@selector(dragContent:)];
-    ju_panGesture.delegate = self;
+    if(!ju_panGesture){
+        ju_panGesture= [[UIPanGestureRecognizer alloc] initWithTarget:self  action:@selector(dragContent:)];
+        ju_panGesture.delegate = self;
+    }
     [self addGestureRecognizer:ju_panGesture];
 }
 -(void)removePanGesture{
     [self removeGestureRecognizer:ju_panGesture];
-    ju_panGesture=nil;
+//    ju_panGesture=nil;
 }
 -(void)addTapGesture{
-    ju_tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapContent:)];
+    if(!ju_tapGesture){
+        ju_tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapContent:)];
+    }
     [self addGestureRecognizer:ju_tapGesture];
 }
 -(void)removeTapGesture{
@@ -69,12 +73,14 @@
 }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     CGPoint translation = [ju_panGesture translationInView:self];
-//    NSLog(@"X:%f  Y:%f",translation.x,translation.y);
+
     if (gestureRecognizer==ju_panGesture) {
+         NSLog(@"里面 %@ X:%f  Y:%f",gestureRecognizer,translation.x,translation.y);
         if (fabs(translation.y)*1.2 >= fabs(translation.x)) {
             return NO; // 手势冲突，解决tableview不可拖动
         }
     }
+     NSLog(@"外面 %@ X:%f  Y:%f",gestureRecognizer,translation.x,translation.y);
     return YES;
 }
 -(NSArray<UIView *> *)ju_leftRowAction{
