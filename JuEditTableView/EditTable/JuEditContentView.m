@@ -73,14 +73,13 @@
 }
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     CGPoint translation = [ju_panGesture translationInView:self];
-
     if (gestureRecognizer==ju_panGesture) {
-         NSLog(@"里面 %@ X:%f  Y:%f",gestureRecognizer,translation.x,translation.y);
-        if (fabs(translation.y)*1.2 >= fabs(translation.x)) {
+//         NSLog(@"里面 %@ X:%f  Y:%f",gestureRecognizer,translation.x,translation.y);
+        if (fabs(translation.y)>= fabs(translation.x)) {
             return NO; // 手势冲突，解决tableview不可拖动
         }
     }
-     NSLog(@"外面 %@ X:%f  Y:%f",gestureRecognizer,translation.x,translation.y);
+//     NSLog(@"外面 %@ X:%f  Y:%f",gestureRecognizer,translation.x,translation.y);
     return YES;
 }
 -(NSArray<UIView *> *)ju_leftRowAction{
@@ -94,7 +93,9 @@
     UIView *supView=self.superview;
     if (!supView) return NO;
     NSArray *items=isLeft?self.ju_leftRowAction:self.ju_RightRowAction;
-    if (!ju_viewBack) {
+
+    [self juDeselectTable:items.count];
+      if (!ju_viewBack) {
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
     }
@@ -133,7 +134,7 @@
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
         ju_parentTable.ju_editIndexPath=nil;///< 编辑结束可继续滑动
-        [self addPanGesture];
+//        [self addPanGesture];
         [self removeTapGesture];
         ju_EditStatus=JuEditStatusNone;
     }];
@@ -149,13 +150,13 @@
         }
         if (ju_EditStatus==JuEditStatusAnimate) return;
         ju_EditStatus=JuEditStatusAnimate;
-         [self shSetTableIndex];///< 出现编辑table不可滑动
+//         [self shSetTableIndex];///< 出现编辑table不可滑动
         [UIView animateWithDuration:0.3 animations:^{
            
             self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(originx<0?-1:1), 0);
         }completion:^(BOOL finished) {
             [self addTapGesture];
-            [self removePanGesture];
+//            [self removePanGesture];
             ju_EditStatus=JuEditStatusNone;
         }];
     }else{
@@ -176,6 +177,11 @@
         ju_EditStatus=JuEditStatusFirstDrag;
     }
     else{
+        if (fabs(viewOriginX)>0) {
+            [self juEndEdit];
+            return;
+        }
+
         if(pan.state==UIGestureRecognizerStateChanged&&ju_EditStatus==JuEditStatusFirstDrag){
             CGPoint translation = [pan translationInView:pan.view];
             ju_EditStatus=[self juSetRowActions:translation.x<0];
@@ -214,8 +220,13 @@
     }
     return ju_parentTable;
 }
-
-
+///< 取消table选中
+-(void)juDeselectTable:(BOOL)isDrag{
+    if (isDrag) {
+        [self shSetTableIndex];///< 出现编辑table不可滑动
+        [self.sh_tableView deselectRowAtIndexPath:ju_parentTable.ju_editIndexPath animated:NO];
+    }
+}
 ///< 设置当前row indexPath
 -(void)shSetTableIndex{
     [self sh_tableView];
