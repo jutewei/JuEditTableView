@@ -121,8 +121,8 @@
 }
 ///< 结束编辑
 -(void)juEndEdit{
-    if (ju_EditStatus==JuEditStatusAnimate) return;
-    ju_EditStatus=JuEditStatusAnimate;
+    if (ju_EditStatus==JuEditStatusClose) return;
+    ju_EditStatus=JuEditStatusClose;
     [UIView animateWithDuration:0.3 animations:^{
         self.transform = CGAffineTransformIdentity;
     }completion:^(BOOL finished) {

@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger,JuEditStatus){
     JuEditStatusLeft    = 3,///< 往左拖拽
     JuEditStatusRight  = 4,///< 往右拖拽
     JuEditStatusAnimate  = 5,///< 正在执行动画
-   
+    JuEditStatusClose  = 6,///< 正在执行关闭动画
 };///<三个同时存在并且优先级一样就会冲突
 
 @interface JuEditContentView : UIView
