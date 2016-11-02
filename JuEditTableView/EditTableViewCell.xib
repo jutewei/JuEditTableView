@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,17 +15,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C6W-uO-xbu" id="zPp-5Q-YC4">
-                <frame key="frameInset" width="375" height="67"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5b-LZ-unC" customClass="JuEditContentView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7F8-fO-Clb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="左边" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7F8-fO-Clb">
+                                <rect key="frame" x="15" y="23.5" width="49" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="右边" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQU-Yw-LCB">
+                                <rect key="frame" x="325" y="23.5" width="35" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -30,11 +36,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="XQU-Yw-LCB" secondAttribute="trailing" constant="8" id="11u-fc-Gwh"/>
+                            <constraint firstAttribute="trailing" secondItem="XQU-Yw-LCB" secondAttribute="trailing" constant="15" id="11u-fc-Gwh"/>
                             <constraint firstAttribute="trailing" secondItem="7F8-fO-Clb" secondAttribute="trailing" constant="311" id="9hY-52-DZV"/>
                             <constraint firstItem="7F8-fO-Clb" firstAttribute="centerY" secondItem="f5b-LZ-unC" secondAttribute="centerY" id="O2o-Af-rps"/>
                             <constraint firstItem="XQU-Yw-LCB" firstAttribute="centerY" secondItem="f5b-LZ-unC" secondAttribute="centerY" id="cXq-Mt-LXY"/>
-                            <constraint firstItem="7F8-fO-Clb" firstAttribute="leading" secondItem="f5b-LZ-unC" secondAttribute="leading" constant="22" id="qta-Wo-R5N"/>
+                            <constraint firstItem="7F8-fO-Clb" firstAttribute="leading" secondItem="f5b-LZ-unC" secondAttribute="leading" constant="15" id="qta-Wo-R5N"/>
                         </constraints>
                     </view>
                 </subviews>
