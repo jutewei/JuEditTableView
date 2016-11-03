@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=@"自定义侧滑";
 //    NSArray *items=@[@"编辑",@"删除"];
 //    NSMutableArray *arrItemView=[NSMutableArray array];
 //    for (int i=0; i<items.count; i++) {

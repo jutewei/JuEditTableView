@@ -12,7 +12,6 @@
 #import "UIView+tableView.h"
 @interface JuEditContentView ()<UIGestureRecognizerDelegate,EditTableViewDelegate>{
     UIPanGestureRecognizer *ju_panGesture;
-    UITapGestureRecognizer *ju_tapGesture;
     UIView *ju_viewBack;
     CGFloat ju_itemsTotalW;
 //    BOOL isLeftPan;///< 往哪边滑动
@@ -41,16 +40,6 @@
         ju_panGesture=nil;
     }
 }
--(void)addTapGesture{
-    if(!ju_tapGesture){
-        ju_tapGesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapContent:)];
-    }
-    [self addGestureRecognizer:ju_tapGesture];
-}
--(void)removeTapGesture{
-    [self removeGestureRecognizer:ju_tapGesture];
-    ju_tapGesture=nil;
-}
 -(void)didMoveToSuperview{
     [super didMoveToSuperview];
     if (self.superview) {
@@ -61,6 +50,10 @@
 }
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
+    if (ju_EditStatus>=JuEditStatusAnimate&&ju_EditStatus<=JuEditStatusClose) {
+        [self juEndMove];
+        return nil;
+    }
     if (result==self) {
         self.isCanEdit=[self.sh_tableView isCanEdit:self];
     }
@@ -84,17 +77,62 @@
     }
     return YES;
 }
--(NSArray<UIView *> *)ju_leftRowAction{
-    return [self.sh_tableView ju_leftRowAction:self];
-}
--(NSArray<UIView *> *)ju_RightRowAction{
-    return [self.sh_tableView ju_RightRowAction:self];
+///< 拖动出现编辑动画
+- (void)dragContent:(UIPanGestureRecognizer *)pan{
+    static  CGFloat viewOriginX=0;
+    CGRect frame=pan.view.frame;
+    if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
+        [self juStartEndMove:fabs(frame.origin.x)>40];///< 拖动停止实现动画
+        return;
+    }
+    else if(pan.state==UIGestureRecognizerStateBegan){
+        viewOriginX=pan.view.frame.origin.x;
+        //        isFirstDrag=YES;
+        ju_EditStatus=JuEditStatusFirstDrag;
+    }
+    else{
+        if (fabs(viewOriginX)>0) {
+            [self juEndMove];
+            return;
+        }
+        
+        CGFloat translationX = [pan translationInView:pan.view].x;
+        if(pan.state==UIGestureRecognizerStateChanged&&ju_EditStatus==JuEditStatusFirstDrag){///< 获取滑动方向
+            ju_EditStatus=[self juSetRowActions:translationX<0];
+        }
+        
+        
+        if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusRight&&translationX<0)||(ju_EditStatus==JuEditStatusLeft&&translationX>0)) {///< 不能拖拽或者拖拽方向与开始相反
+            pan.view.transform = CGAffineTransformMakeTranslation(MIN(translationX*0.4, 15), 0);
+            return;
+        }
+        
+        CGFloat transX=fabs(translationX);
+        CGFloat originX;
+        CGFloat totalX=frame.origin.x;
+        if (fabs(totalX)>ju_itemsTotalW) {
+            if (fabs(viewOriginX)>0) {///<防止第二次不在起始位置拖动
+                originX=transX*0.3;
+            }else{///< 实现阻尼效果
+                originX=ju_itemsTotalW+(transX-ju_itemsTotalW)*0.3;
+            }
+        }else{///< 未到边界无阻尼
+            originX=transX;
+        }
+        if (translationX<0) {
+            originX=-originX;
+        }
+        pan.view.transform = CGAffineTransformMakeTranslation(originX+viewOriginX, 0);
+    }
 }
 
+///< 拖到手势
 -(JuEditStatus)juSetRowActions:(BOOL)isLeft{
     UIView *supView=self.superview;
-    if (!supView) return NO;
+    if (!supView) return JuEditStatusNone;
     NSArray *items=isLeft?self.ju_leftRowAction:self.ju_RightRowAction;
+    if (items.count==0) return JuEditStatusNone;
+    
     _juOpenRight=isLeft;
     [self juDeselectTable:items.count];
       if (!ju_viewBack) {
@@ -125,27 +163,39 @@
     }
     ju_viewBack.ju_Width.constant=itemLeft;
     ju_itemsTotalW=itemLeft;
-    
-    return items.count?(isLeft?JuEditStatusLeft:JuEditStatusRight):JuEditStatusNone;
+    return isLeft?JuEditStatusLeft:JuEditStatusRight;
 }
-////< 点击当前cell结束编辑
--(void)tapContent:(UITapGestureRecognizer *)tap{
-    [self juEndMove];
+///<点击开启
+-(void)setJuOpenRight:(BOOL)juOpenRight{
+    _juOpenRight=juOpenRight;
+    BOOL isClose=fabs(self.frame.origin.x)<10;
+    if (isClose&&[self.sh_tableView isCanEdit:self]) {
+        ju_EditStatus=[self juSetRowActions:_juOpenRight];
+    }
+    [self juStartEndMove:isClose];
+}
+-(void)juStartEndMove:(BOOL)open{
+    if (open) {
+        CGFloat originx=self.frame.origin.x;///<防止左滑又右滑
+        if ((ju_EditStatus==JuEditStatusRight&&originx<0)||(ju_EditStatus==JuEditStatusLeft&&originx>0)) {
+            [self juEndMove];
+            return;
+        }
+        
+        [self juStartMove];
+    }else{
+        [self juEndMove];
+    }
 }
 -(void)juStartMove{
-    CGFloat originx=self.frame.origin.x;
-    if ((ju_EditStatus==JuEditStatusRight&&originx<0)||(ju_EditStatus==JuEditStatusLeft&&originx>0)) {
-        [self juEndMove];
-        return;
-    }
+    if (ju_itemsTotalW==0) return;
     if (ju_EditStatus==JuEditStatusAnimate) return;
     ju_EditStatus=JuEditStatusAnimate;
     [self shSetTableIndex];///< 出现编辑table不可滑动
     [UIView animateWithDuration:0.2 animations:^{
         self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(_juOpenRight?-1:1), 0);
     }completion:^(BOOL finished) {
-        [self addTapGesture];
-        ju_EditStatus=JuEditStatusNone;
+        ju_EditStatus=JuEditStatusOpened;
     }];
 }
 ///< 结束编辑
@@ -158,75 +208,10 @@
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
         ju_parentTable.ju_editIndexPath=nil;///< 编辑结束可继续滑动
-        [self removeTapGesture];
         ju_EditStatus=JuEditStatusNone;
     }];
 }
 
--(void)juStartEdit:(BOOL)open{
-    if (open) {
-        [self juStartMove];
-    }else{
-        [self juEndMove];
-    }
-}
--(void)setJuOpenRight:(BOOL)juOpenRight{
-    _juOpenRight=juOpenRight;
-    BOOL isClose=fabs(self.frame.origin.x)<10;
-    if (isClose) {
-        ju_EditStatus=[ self juSetRowActions:_juOpenRight];
-    }
-    [self juStartEdit:isClose];
-}
-
-///< 拖动出现编辑动画
-- (void)dragContent:(UIPanGestureRecognizer *)pan{
-    static  CGFloat viewOriginX=0;
-    CGRect frame=pan.view.frame;
-    if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
-        [self juStartEdit:fabs(frame.origin.x)>40];///< 拖动停止实现动画
-        return;
-    }
-    else if(pan.state==UIGestureRecognizerStateBegan){
-        viewOriginX=pan.view.frame.origin.x;
-//        isFirstDrag=YES;
-        ju_EditStatus=JuEditStatusFirstDrag;
-    }
-    else{
-        if (fabs(viewOriginX)>0) {
-            [self juEndMove];
-            return;
-        }
-
-        CGFloat translationX = [pan translationInView:pan.view].x;
-        if(pan.state==UIGestureRecognizerStateChanged&&ju_EditStatus==JuEditStatusFirstDrag){///< 获取滑动方向
-            ju_EditStatus=[self juSetRowActions:translationX<0];
-        }
-
-
-        if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusRight&&translationX<0)||(ju_EditStatus==JuEditStatusLeft&&translationX>0)) {///< 不能拖拽或者拖拽方向与开始相反
-            pan.view.transform = CGAffineTransformMakeTranslation(MIN(translationX*0.4, 15), 0);
-            return;
-        }
-       
-        CGFloat transX=fabs(translationX);
-        CGFloat originX;
-        CGFloat totalX=frame.origin.x;
-        if (fabs(totalX)>ju_itemsTotalW) {
-            if (fabs(viewOriginX)>0) {///<防止第二次不在起始位置拖动
-                originX=transX*0.3;
-            }else{///< 实现阻尼效果
-                originX=ju_itemsTotalW+(transX-ju_itemsTotalW)*0.3;
-            }
-        }else{///< 未到边界无阻尼
-            originX=transX;
-        }
-        if (translationX<0) {
-            originX=-originX;
-        }
-        pan.view.transform = CGAffineTransformMakeTranslation(originX+viewOriginX, 0);
-    }
-}
 #pragma mark cellDelegate
 -(void)JuHideEditCell{
     [self juEndMove];
@@ -251,4 +236,11 @@
     ju_parentTable.ju_editIndexPath= [self juSubViewTable:ju_parentTable];
 //    [ju_parentTable juSubView:self];
 }
+-(NSArray<UIView *> *)ju_leftRowAction{
+    return [self.sh_tableView ju_leftRowAction:self];
+}
+-(NSArray<UIView *> *)ju_RightRowAction{
+    return [self.sh_tableView ju_RightRowAction:self];
+}
+
 @end
