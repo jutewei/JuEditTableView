@@ -55,7 +55,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 30;
 }
 -(BOOL)juTableView:(JuEditTableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row>7){

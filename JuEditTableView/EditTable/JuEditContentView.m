@@ -36,8 +36,10 @@
     [self addGestureRecognizer:ju_panGesture];
 }
 -(void)removePanGesture{
-    [self removeGestureRecognizer:ju_panGesture];
-//    ju_panGesture=nil;
+    if(ju_panGesture){
+        [self removeGestureRecognizer:ju_panGesture];
+        ju_panGesture=nil;
+    }
 }
 -(void)addTapGesture{
     if(!ju_tapGesture){
@@ -56,6 +58,13 @@
             self.isCanEdit=[self.sh_tableView isCanEdit:self];
         });
     }
+}
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    UIView *result = [super hitTest:point withEvent:event];
+    if (result==self) {
+        self.isCanEdit=[self.sh_tableView isCanEdit:self];
+    }
+    return result;
 }
 -(void)setIsCanEdit:(BOOL)isCanEdit{
     _isCanEdit=isCanEdit;
