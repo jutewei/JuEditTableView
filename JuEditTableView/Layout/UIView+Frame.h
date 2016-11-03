@@ -10,6 +10,7 @@
 #import "UIView+JuLayGroup.h"
 #import "UIView+StringFrame.h"
 @interface UIView (Frame)
+
 - (CGFloat)originX;
 - (CGFloat)originY;
 - (CGFloat)sizeW;

@@ -27,12 +27,7 @@ static const void *PayloadSelect = &PayloadSelect;
     NSNumber *number = [[NSNumber alloc] initWithInteger:payloadSelect];
     objc_setAssociatedObject(self, PayloadSelect, number, OBJC_ASSOCIATION_COPY);
 }
--(CGFloat)ju_itemWidth{
-    return [objc_getAssociatedObject(self, @selector(ju_itemWidth)) floatValue];
-}
--(void)setJu_itemWidth:(CGFloat)ju_itemWidth{
-     objc_setAssociatedObject(self,  @selector(ju_itemWidth), @(ju_itemWidth), OBJC_ASSOCIATION_COPY);
-}
+
 @end
 @implementation UILabel (StringFrame)
 - (CGSize)boundingRectWithSize:(CGFloat)width {

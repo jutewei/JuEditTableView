@@ -9,6 +9,7 @@
 #import "UIView+Frame.h"
 
 @implementation UIView (Frame)
+
 - (CGFloat)originX
 {
     return self.frame.origin.x;

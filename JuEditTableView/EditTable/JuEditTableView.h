@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Juvid. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UIView+tableView.h"
 @protocol JuTableViewDataSource;
 @class JuTableRowAction;
 @interface JuEditTableView : UITableView
@@ -27,7 +27,7 @@
 
 @optional
 - (NSArray<JuTableRowAction *> *)juTableView:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath;///< 默认左边
-- (NSArray<JuTableRowAction *> *)juTableViewLeft:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSArray<JuTableRowAction *> *)juTableView:(JuEditTableView *)tableView editLeftActionsForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)juTableView:(JuEditTableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
@@ -37,4 +37,3 @@ typedef void(^JuHandler)(JuTableRowAction *action, NSIndexPath *indexPath);
 + (instancetype)rowActionWithTitle:(NSString *)title handler:(JuHandler)handler;
 @property CGFloat juItemWidth;
 @end
-

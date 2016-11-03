@@ -11,4 +11,5 @@
 @interface UIView (tableView)
 -(NSIndexPath *)juSubViewTable:(UITableView *)tableView;
 -(UITableView *)juTableView;
+@property (nonatomic) CGFloat ju_itemWidth;///< 指定侧滑按钮宽度
 @end

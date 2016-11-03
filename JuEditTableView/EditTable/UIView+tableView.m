@@ -7,7 +7,7 @@
 //
 
 #import "UIView+tableView.h"
-
+#import <objc/runtime.h>
 @implementation UIView (tableView)
 -(NSIndexPath *)juSubViewTable:(UITableView *)tableView{
     UIView *superView=self;
@@ -29,5 +29,11 @@
         superView=[superView superview];
     }
     return (UITableView *)superView;
+}
+-(CGFloat)ju_itemWidth{
+    return [objc_getAssociatedObject(self, @selector(ju_itemWidth)) floatValue];
+}
+-(void)setJu_itemWidth:(CGFloat)ju_itemWidth{
+    objc_setAssociatedObject(self,  @selector(ju_itemWidth), @(ju_itemWidth), OBJC_ASSOCIATION_COPY);
 }
 @end

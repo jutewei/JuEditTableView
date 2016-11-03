@@ -8,6 +8,7 @@
 
 #import "JuEditTableView.h"
 #import "UIView+tableView.h"
+
 @implementation JuEditTableView
 
 /*
@@ -59,8 +60,8 @@
     return _ju_leftRowAction;
 }
 -(NSArray<UIView*>*)ju_RightRowAction:(NSIndexPath *)indexPath{
-    if ([self.juDataSource respondsToSelector:@selector(juTableViewLeft: editActionsForRowAtIndexPath:)]&&indexPath) {
-        return [self.juDataSource juTableViewLeft:self editActionsForRowAtIndexPath:indexPath];
+    if ([self.juDataSource respondsToSelector:@selector(juTableView: editLeftActionsForRowAtIndexPath:)]&&indexPath) {
+        return [self.juDataSource juTableView:self editLeftActionsForRowAtIndexPath:indexPath];
     }
     return _ju_RightRowAction;
 }

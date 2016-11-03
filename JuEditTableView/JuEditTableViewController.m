@@ -90,7 +90,7 @@
     return  arrItemView;
 
 }
-- (NSArray<JuTableRowAction *> *)juTableViewLeft:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (NSArray<JuTableRowAction *> *)juTableView:(JuEditTableView *)tableView editLeftActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *items=@[@"标记已读"];
     if (indexPath.row>7) {
         items=@[@"标记已读",@"置顶"];

@@ -12,7 +12,7 @@
 
 @property(nonatomic,strong)id payloadObject;
 @property  NSInteger payloadSelect;
-@property (nonatomic) CGFloat ju_itemWidth;
+
 @end
 
 @interface UILabel (StringFrame)
