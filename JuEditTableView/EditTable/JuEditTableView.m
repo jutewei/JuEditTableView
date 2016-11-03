@@ -35,8 +35,8 @@
     return YES;
 }
 -(void)juTableEndEdit{
-    if ([self.juDelegate respondsToSelector:@selector(JuHideEditCell)]) {
-        [self.juDelegate JuHideEditCell];
+    if (self.juEndEdit) {
+        self.juEndEdit();
     }
 }
 -(BOOL)isCanEdit:(NSIndexPath *)indexPath{

@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol EditTableViewDelegate;
-@protocol EditTableViewDataSource;
+@protocol JuTableViewDataSource;
 @class JuTableRowAction;
 @interface JuEditTableView : UITableView
-@property (nonatomic,assign) id<EditTableViewDelegate> juDelegate;
-@property (nonatomic,assign) IBOutlet id<EditTableViewDataSource> juDataSource;
-@property (nonatomic,weak)NSIndexPath *ju_editIndexPath;
-
+@property (nonatomic,assign) IBOutlet id<JuTableViewDataSource> juDataSource;
+@property (nonatomic,weak)   NSIndexPath *ju_editIndexPath;
+@property (nonatomic,copy)   dispatch_block_t juEndEdit;
 @property (nonatomic,strong)NSArray<UIView*> *ju_leftRowAction;///< 左边action
 @property (nonatomic,strong)NSArray<UIView*> *ju_RightRowAction;///< 右边action
 
@@ -24,11 +22,8 @@
 
 @end
 
-@protocol EditTableViewDelegate <NSObject>
--(void)JuHideEditCell;
-@end
 
-@protocol EditTableViewDataSource <NSObject>
+@protocol JuTableViewDataSource <NSObject>
 
 @optional
 - (NSArray<JuTableRowAction *> *)juTableView:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath;///< 默认左边

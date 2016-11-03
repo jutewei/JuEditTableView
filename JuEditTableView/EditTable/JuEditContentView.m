@@ -10,7 +10,7 @@
 #import "UIView+Frame.h"
 #import "JuEditTableView.h"
 #import "UIView+tableView.h"
-@interface JuEditContentView ()<UIGestureRecognizerDelegate,EditTableViewDelegate>{
+@interface JuEditContentView ()<UIGestureRecognizerDelegate>{
     UIPanGestureRecognizer *ju_panGesture;
     UIView *ju_viewBack;
     CGFloat ju_itemsTotalW;
@@ -45,11 +45,11 @@
 }
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
-    if (ju_EditStatus>=JuEditStatusAnimate&&ju_EditStatus<=JuEditStatusClose) {
-        [self juEndMove];
-        return nil;
-    }
     if (result==self) {
+        if (ju_EditStatus>=JuEditStatusAnimate&&ju_EditStatus<=JuEditStatusClose) {
+            [self juEndMove];
+            return nil;
+        }
         self.isCanEdit=[self.sh_tableView isCanEdit:self.indexPath];
     }
     return result;
@@ -209,7 +209,7 @@
 }
 
 #pragma mark cellDelegate
--(void)JuHideEditCell{
+-(void)JuEndEditCell{
     [self juEndMove];
 }
 -(JuEditTableView *)sh_tableView{
@@ -228,9 +228,11 @@
 ///< 设置当前row indexPath
 -(void)shSetTableIndex{
     [self sh_tableView];
-    ju_parentTable.juDelegate=self;///< 每次需要重新赋值
+    __weak typeof(self) weakSelf=self;
     ju_parentTable.ju_editIndexPath= self.indexPath;
-//    [ju_parentTable juSubView:self];
+    ju_parentTable.juEndEdit=^(){///< 每次需要重新赋值
+        [weakSelf juEndMove];
+    };
 }
 -(NSArray<UIView *> *)ju_leftRowAction{
     return [self.sh_tableView ju_leftRowAction:self.indexPath];

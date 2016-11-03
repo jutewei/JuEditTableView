@@ -10,7 +10,7 @@
 #import "JuEditTableView.h"
 #import "EditTableViewCell.h"
 #import "UIView+StringFrame.h"
-@interface JuEditTableViewController ()<EditTableViewDataSource>
+@interface JuEditTableViewController ()<JuTableViewDataSource>
 
 @end
 
@@ -60,7 +60,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 30;
+    return 5;
 }
 
 -(BOOL)juTableView:(JuEditTableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
