@@ -9,6 +9,7 @@
 #import "JuEditTableViewController.h"
 #import "JuEditTableView.h"
 #import "EditTableViewCell.h"
+#import "UIView+StringFrame.h"
 @interface JuEditTableViewController ()<EditTableViewDataSource>
 
 @end
@@ -73,6 +74,7 @@
         JuTableRowAction *btnItems=[JuTableRowAction rowActionWithTitle:items[i]  handler:^(JuTableRowAction *action, NSIndexPath *indexPath) {
             NSLog(@"当前行 %@ %@",action,indexPath);
         }];
+        btnItems.ju_itemWidth=120;
         if (i==1) {
             btnItems.backgroundColor=[UIColor redColor];
         }else{

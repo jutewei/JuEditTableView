@@ -78,12 +78,10 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     CGPoint translation = [ju_panGesture translationInView:self];
     if (gestureRecognizer==ju_panGesture) {
-//         NSLog(@"里面 %@ X:%f  Y:%f",gestureRecognizer,translation.x,translation.y);
         if (fabs(translation.y)>= fabs(translation.x)) {
             return NO; // 手势冲突，解决tableview不可拖动
         }
     }
-//     NSLog(@"外面 %@ X:%f  Y:%f",gestureRecognizer,translation.x,translation.y);
     return YES;
 }
 -(NSArray<UIView *> *)ju_leftRowAction{
@@ -112,8 +110,14 @@
     CGFloat itemLeft=0.01;
     for (int i=0; i<items.count; i++) {
         UIButton *btnItems=items[i];
+
         [ju_viewBack addSubview:btnItems];
-        CGFloat itemW=[btnItems boundingWidth:200]+40;
+        CGFloat itemW;
+        if (btnItems.ju_itemWidth>0) {
+            itemW=btnItems.ju_itemWidth;
+        }else{
+            itemW=[btnItems boundingWidth:200]+40;
+        }
         {
             btnItems.juFrame(CGRectMake(itemLeft, 0, itemW, 0));
         }
@@ -126,10 +130,26 @@
 }
 ////< 点击当前cell结束编辑
 -(void)tapContent:(UITapGestureRecognizer *)tap{
-    [self juEndEdit];
+    [self juEndMove];
+}
+-(void)juStartMove{
+    CGFloat originx=self.frame.origin.x;
+    if ((ju_EditStatus==JuEditStatusRight&&originx<0)||(ju_EditStatus==JuEditStatusLeft&&originx>0)) {
+        [self juEndMove];
+        return;
+    }
+    if (ju_EditStatus==JuEditStatusAnimate) return;
+    ju_EditStatus=JuEditStatusAnimate;
+    [self shSetTableIndex];///< 出现编辑table不可滑动
+    [UIView animateWithDuration:0.2 animations:^{
+        self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(originx<0?-1:1), 0);
+    }completion:^(BOOL finished) {
+        [self addTapGesture];
+        ju_EditStatus=JuEditStatusNone;
+    }];
 }
 ///< 结束编辑
--(void)juEndEdit{
+-(void)juEndMove{
     if (ju_EditStatus==JuEditStatusClose) return;
     ju_EditStatus=JuEditStatusClose;
     [UIView animateWithDuration:0.3 animations:^{
@@ -138,41 +158,27 @@
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
         ju_parentTable.ju_editIndexPath=nil;///< 编辑结束可继续滑动
-//        [self addPanGesture];
         [self removeTapGesture];
         ju_EditStatus=JuEditStatusNone;
     }];
 }
-///< 可以开始编辑
--(void)juBeganEdit:(CGFloat)originX{
-
-    if (fabs(originX)>40) {
-        CGFloat originx=self.frame.origin.x;
-        if ((ju_EditStatus==JuEditStatusRight&&originX<0)||(ju_EditStatus==JuEditStatusLeft&&originX>0)) {
-             [self juEndEdit];
-            return;
-        }
-        if (ju_EditStatus==JuEditStatusAnimate) return;
-        ju_EditStatus=JuEditStatusAnimate;
-         [self shSetTableIndex];///< 出现编辑table不可滑动
-        [UIView animateWithDuration:0.2 animations:^{
-           
-            self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(originx<0?-1:1), 0);
-        }completion:^(BOOL finished) {
-            [self addTapGesture];
-//            [self removePanGesture];
-            ju_EditStatus=JuEditStatusNone;
-        }];
+-(void)juStartEdit:(BOOL)open left:(BOOL)left{
+    if (open) {
+        [self juStartMove];
     }else{
-        [self juEndEdit];
+        [self juEndMove];
     }
 }
+-(void)juStartEdit:(BOOL)open{
+    [self juStartEdit:open left:YES];
+}
+
 ///< 拖动出现编辑动画
 - (void)dragContent:(UIPanGestureRecognizer *)pan{
     static  CGFloat viewOriginX=0;
     CGRect frame=pan.view.frame;
     if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
-        [self juBeganEdit:frame.origin.x];///< 拖动停止实现动画
+        [self juStartEdit:fabs(frame.origin.x)>40];///< 拖动停止实现动画
         return;
     }
     else if(pan.state==UIGestureRecognizerStateBegan){
@@ -182,7 +188,7 @@
     }
     else{
         if (fabs(viewOriginX)>0) {
-            [self juEndEdit];
+            [self juEndMove];
             return;
         }
 
@@ -217,7 +223,7 @@
 }
 #pragma mark cellDelegate
 -(void)JuHideEditCell{
-    [self juEndEdit];
+    [self juEndMove];
 }
 -(JuEditTableView *)sh_tableView{
     if(!ju_parentTable){

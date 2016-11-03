@@ -16,7 +16,7 @@
         if ([superView isKindOfClass:[UITableViewCell class]]) {
             break;
         }
-         superView=[superView superview];
+        superView=[superView superview];
     }
     NSIndexPath *_ju_editIndexPath = [tableView indexPathForCell:(UITableViewCell *)superView];
     return _ju_editIndexPath;
@@ -24,11 +24,11 @@
 -(UITableView *)juTableView{
     UIView *superView=self;
     while (superView) {
-       
+
         if ([superView isKindOfClass:[UITableView class]]) {
             break;
         }
-         superView=[superView superview];
+        superView=[superView superview];
     }
     return (UITableView *)superView;
 }

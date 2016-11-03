@@ -19,5 +19,7 @@ typedef NS_ENUM(NSInteger,JuEditStatus){
 
 @interface JuEditContentView : UIView
 -(void)juEndEdit;
+-(void)juStartEdit:(BOOL)open left:(BOOL)left;
+-(void)juStartEdit:(BOOL)open;
 @property (nonatomic,readonly) BOOL isCanEdit;
 @end
