@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB43FAA81DCB48DC00296145 /* JuEditContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB43FAA31DCB48DC00296145 /* JuEditContentView.m */; };
+		EB43FAA91DCB48DC00296145 /* JuEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB43FAA51DCB48DC00296145 /* JuEditTableView.m */; };
+		EB43FAAA1DCB48DC00296145 /* UIView+tableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB43FAA71DCB48DC00296145 /* UIView+tableView.m */; };
 		EB4F433A1DC891A0000CA0A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43391DC891A0000CA0A7 /* main.m */; };
 		EB4F433D1DC891A0000CA0A7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F433C1DC891A0000CA0A7 /* AppDelegate.m */; };
 		EB4F43431DC891A0000CA0A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4F43411DC891A0000CA0A7 /* Main.storyboard */; };
@@ -21,12 +24,15 @@
 		EB4F436C1DC89202000CA0A7 /* UIView+StringFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43661DC89202000CA0A7 /* UIView+StringFrame.m */; };
 		EB4F43751DC893E1000CA0A7 /* EditTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */; };
 		EB4F43791DC8940F000CA0A7 /* EditTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */; };
-		EB4F43841DC8A135000CA0A7 /* JuEditContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F437F1DC8A135000CA0A7 /* JuEditContentView.m */; };
-		EB4F43851DC8A135000CA0A7 /* JuEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43811DC8A135000CA0A7 /* JuEditTableView.m */; };
-		EB4F43861DC8A135000CA0A7 /* UIView+tableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4F43831DC8A135000CA0A7 /* UIView+tableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB43FAA21DCB48DC00296145 /* JuEditContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditContentView.h; sourceTree = "<group>"; };
+		EB43FAA31DCB48DC00296145 /* JuEditContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditContentView.m; sourceTree = "<group>"; };
+		EB43FAA41DCB48DC00296145 /* JuEditTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditTableView.h; sourceTree = "<group>"; };
+		EB43FAA51DCB48DC00296145 /* JuEditTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditTableView.m; sourceTree = "<group>"; };
+		EB43FAA61DCB48DC00296145 /* UIView+tableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+tableView.h"; sourceTree = "<group>"; };
+		EB43FAA71DCB48DC00296145 /* UIView+tableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+tableView.m"; sourceTree = "<group>"; };
 		EB4F43351DC891A0000CA0A7 /* JuEditTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuEditTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4F43391DC891A0000CA0A7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EB4F433B1DC891A0000CA0A7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,12 +58,6 @@
 		EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTableViewCell.xib; sourceTree = "<group>"; };
 		EB4F43771DC8940F000CA0A7 /* EditTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTableViewCell.h; sourceTree = "<group>"; };
 		EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTableViewCell.m; sourceTree = "<group>"; };
-		EB4F437E1DC8A135000CA0A7 /* JuEditContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditContentView.h; sourceTree = "<group>"; };
-		EB4F437F1DC8A135000CA0A7 /* JuEditContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditContentView.m; sourceTree = "<group>"; };
-		EB4F43801DC8A135000CA0A7 /* JuEditTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditTableView.h; sourceTree = "<group>"; };
-		EB4F43811DC8A135000CA0A7 /* JuEditTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditTableView.m; sourceTree = "<group>"; };
-		EB4F43821DC8A135000CA0A7 /* UIView+tableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+tableView.h"; sourceTree = "<group>"; };
-		EB4F43831DC8A135000CA0A7 /* UIView+tableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+tableView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,12 +138,12 @@
 		EB4F437D1DC8A135000CA0A7 /* EditTable */ = {
 			isa = PBXGroup;
 			children = (
-				EB4F437E1DC8A135000CA0A7 /* JuEditContentView.h */,
-				EB4F437F1DC8A135000CA0A7 /* JuEditContentView.m */,
-				EB4F43801DC8A135000CA0A7 /* JuEditTableView.h */,
-				EB4F43811DC8A135000CA0A7 /* JuEditTableView.m */,
-				EB4F43821DC8A135000CA0A7 /* UIView+tableView.h */,
-				EB4F43831DC8A135000CA0A7 /* UIView+tableView.m */,
+				EB43FAA21DCB48DC00296145 /* JuEditContentView.h */,
+				EB43FAA31DCB48DC00296145 /* JuEditContentView.m */,
+				EB43FAA41DCB48DC00296145 /* JuEditTableView.h */,
+				EB43FAA51DCB48DC00296145 /* JuEditTableView.m */,
+				EB43FAA61DCB48DC00296145 /* UIView+tableView.h */,
+				EB43FAA71DCB48DC00296145 /* UIView+tableView.m */,
 			);
 			path = EditTable;
 			sourceTree = "<group>";
@@ -221,16 +221,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB4F43851DC8A135000CA0A7 /* JuEditTableView.m in Sources */,
+				EB43FAA91DCB48DC00296145 /* JuEditTableView.m in Sources */,
 				EB4F436A1DC89202000CA0A7 /* UIView+JuLayGroup.m in Sources */,
 				EB4F436C1DC89202000CA0A7 /* UIView+StringFrame.m in Sources */,
 				EB4F43681DC89202000CA0A7 /* UIView+Frame.m in Sources */,
 				EB4F43671DC89202000CA0A7 /* JuLayout.m in Sources */,
-				EB4F43841DC8A135000CA0A7 /* JuEditContentView.m in Sources */,
-				EB4F43861DC8A135000CA0A7 /* UIView+tableView.m in Sources */,
 				EB4F433D1DC891A0000CA0A7 /* AppDelegate.m in Sources */,
+				EB43FAAA1DCB48DC00296145 /* UIView+tableView.m in Sources */,
 				EB4F43521DC891BD000CA0A7 /* JuEditTableViewController.m in Sources */,
 				EB4F43691DC89202000CA0A7 /* UIView+JuConstraint.m in Sources */,
+				EB43FAA81DCB48DC00296145 /* JuEditContentView.m in Sources */,
 				EB4F433A1DC891A0000CA0A7 /* main.m in Sources */,
 				EB4F436B1DC89202000CA0A7 /* UIView+JuLayout.m in Sources */,
 				EB4F43791DC8940F000CA0A7 /* EditTableViewCell.m in Sources */,

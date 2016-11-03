@@ -15,32 +15,33 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C6W-uO-xbu" id="zPp-5Q-YC4">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5b-LZ-unC" customClass="JuEditContentView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="左边" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7F8-fO-Clb">
-                                <rect key="frame" x="15" y="23.5" width="49" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="右边" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQU-Yw-LCB">
-                                <rect key="frame" x="325" y="23.5" width="35" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4p-cI-w5U">
+                                <rect key="frame" x="329" y="19" width="31" height="30"/>
+                                <state key="normal" title="右边"/>
+                                <connections>
+                                    <action selector="shTouchRight:" destination="C6W-uO-xbu" eventType="touchUpInside" id="dsZ-5h-3lc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NwP-SC-YJg">
+                                <rect key="frame" x="15" y="19" width="31" height="30"/>
+                                <state key="normal" title="左边"/>
+                                <connections>
+                                    <action selector="shTouchLeft:" destination="C6W-uO-xbu" eventType="touchUpInside" id="cRX-BP-FkC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="XQU-Yw-LCB" secondAttribute="trailing" constant="15" id="11u-fc-Gwh"/>
-                            <constraint firstAttribute="trailing" secondItem="7F8-fO-Clb" secondAttribute="trailing" constant="311" id="9hY-52-DZV"/>
-                            <constraint firstItem="7F8-fO-Clb" firstAttribute="centerY" secondItem="f5b-LZ-unC" secondAttribute="centerY" id="O2o-Af-rps"/>
-                            <constraint firstItem="XQU-Yw-LCB" firstAttribute="centerY" secondItem="f5b-LZ-unC" secondAttribute="centerY" id="cXq-Mt-LXY"/>
-                            <constraint firstItem="7F8-fO-Clb" firstAttribute="leading" secondItem="f5b-LZ-unC" secondAttribute="leading" constant="15" id="qta-Wo-R5N"/>
+                            <constraint firstItem="NwP-SC-YJg" firstAttribute="centerY" secondItem="f5b-LZ-unC" secondAttribute="centerY" id="8vs-q0-ZK8"/>
+                            <constraint firstItem="NwP-SC-YJg" firstAttribute="leading" secondItem="f5b-LZ-unC" secondAttribute="leading" constant="15" id="Tae-pw-9mj"/>
+                            <constraint firstAttribute="trailing" secondItem="V4p-cI-w5U" secondAttribute="trailing" constant="15" id="yD1-Dk-SCh"/>
+                            <constraint firstItem="V4p-cI-w5U" firstAttribute="centerY" secondItem="f5b-LZ-unC" secondAttribute="centerY" id="yKW-uT-jXV"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -54,7 +55,7 @@
             <connections>
                 <outlet property="ju_contentView" destination="f5b-LZ-unC" id="aJg-bd-BgD"/>
             </connections>
-            <point key="canvasLocation" x="-37.5" y="76"/>
+            <point key="canvasLocation" x="29" y="109"/>
         </tableViewCell>
     </objects>
 </document>

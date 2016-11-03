@@ -95,7 +95,7 @@
     UIView *supView=self.superview;
     if (!supView) return NO;
     NSArray *items=isLeft?self.ju_leftRowAction:self.ju_RightRowAction;
-
+    _juOpenRight=isLeft;
     [self juDeselectTable:items.count];
       if (!ju_viewBack) {
         [ju_viewBack removeFromSuperview];
@@ -142,7 +142,7 @@
     ju_EditStatus=JuEditStatusAnimate;
     [self shSetTableIndex];///< 出现编辑table不可滑动
     [UIView animateWithDuration:0.2 animations:^{
-        self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(originx<0?-1:1), 0);
+        self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(_juOpenRight?-1:1), 0);
     }completion:^(BOOL finished) {
         [self addTapGesture];
         ju_EditStatus=JuEditStatusNone;
@@ -162,15 +162,21 @@
         ju_EditStatus=JuEditStatusNone;
     }];
 }
--(void)juStartEdit:(BOOL)open left:(BOOL)left{
+
+-(void)juStartEdit:(BOOL)open{
     if (open) {
         [self juStartMove];
     }else{
         [self juEndMove];
     }
 }
--(void)juStartEdit:(BOOL)open{
-    [self juStartEdit:open left:YES];
+-(void)setJuOpenRight:(BOOL)juOpenRight{
+    _juOpenRight=juOpenRight;
+    BOOL isClose=fabs(self.frame.origin.x)<10;
+    if (isClose) {
+        ju_EditStatus=[ self juSetRowActions:_juOpenRight];
+    }
+    [self juStartEdit:isClose];
 }
 
 ///< 拖动出现编辑动画

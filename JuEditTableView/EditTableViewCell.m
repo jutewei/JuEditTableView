@@ -19,6 +19,13 @@
     [super awakeFromNib];
     // Initialization code
 }
+- (IBAction)shTouchLeft:(id)sender {
+    ju_contentView.juOpenRight=NO;
+//    [ju_contentView juOpenRight:NO];
+}
+- (IBAction)shTouchRight:(id)sender {
+     ju_contentView.juOpenRight=YES;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
