@@ -90,8 +90,8 @@
 		EB4F43371DC891A0000CA0A7 /* JuEditTableView */ = {
 			isa = PBXGroup;
 			children = (
-				EB4F437D1DC8A135000CA0A7 /* EditTable */,
 				EB4F435A1DC89202000CA0A7 /* Layout */,
+				EB4F437D1DC8A135000CA0A7 /* EditTable */,
 				EB4F433B1DC891A0000CA0A7 /* AppDelegate.h */,
 				EB4F433C1DC891A0000CA0A7 /* AppDelegate.m */,
 				EB4F434F1DC891BD000CA0A7 /* JuEditTableViewController.h */,
