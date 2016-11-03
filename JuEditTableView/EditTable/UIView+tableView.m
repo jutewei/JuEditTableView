@@ -11,7 +11,6 @@
 @implementation UIView (tableView)
 -(NSIndexPath *)juSubViewTable:(UITableView *)tableView{
     UIView *superView=self;
-    if (!superView) return [NSIndexPath indexPathWithIndex:1];
     while (superView) {
         if ([superView isKindOfClass:[UITableViewCell class]]) {
             break;
@@ -24,7 +23,6 @@
 -(UITableView *)juTableView{
     UIView *superView=self;
     while (superView) {
-
         if ([superView isKindOfClass:[UITableView class]]) {
             break;
         }

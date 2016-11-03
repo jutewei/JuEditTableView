@@ -18,11 +18,10 @@
 @property (nonatomic,strong)NSArray<UIView*> *ju_leftRowAction;///< 左边action
 @property (nonatomic,strong)NSArray<UIView*> *ju_RightRowAction;///< 右边action
 
--(BOOL)isCanEdit:(UIView *)subView;
--(NSArray<UIView*>*)ju_leftRowAction:(UIView *)subView;
--(NSArray<UIView*>*)ju_RightRowAction:(UIView *)subView;
-//-(NSIndexPath *)juSubView:(UIView *)subview;
--(void)juTableEndEdit;
+-(BOOL)isCanEdit:(NSIndexPath *)indexPath;
+-(NSArray<UIView*>*)ju_leftRowAction:(NSIndexPath *)indexPath;
+-(NSArray<UIView*>*)ju_RightRowAction:(NSIndexPath *)indexPath;
+
 @end
 
 @protocol EditTableViewDelegate <NSObject>

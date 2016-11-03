@@ -19,21 +19,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"自定义侧滑";
-//    NSArray *items=@[@"编辑",@"删除"];
-//    NSMutableArray *arrItemView=[NSMutableArray array];
-//    for (int i=0; i<items.count; i++) {
-//        JuTableRowAction *btnItems=[JuTableRowAction rowActionWithTitle:items[i]  handler:^(JuTableRowAction *action, NSIndexPath *indexPath) {
-//             NSLog(@"当前行 %@ %@",action,indexPath);
-//        }];
-//        if (i==1) {
-//            btnItems.backgroundColor=[UIColor redColor];
-//        }else{
-//            btnItems.backgroundColor=[UIColor orangeColor];
-//        }
-//        [arrItemView addObject:btnItems];
-//    }
-//    JuEditTableView *table=(JuEditTableView *)self.tableView;
-//    table.ju_leftRowAction=arrItemView;
+    /*
+    NSArray *items=@[@"编辑",@"删除"];
+    NSMutableArray *arrItemView=[NSMutableArray array];
+    for (int i=0; i<items.count; i++) {
+        JuTableRowAction *btnItems=[JuTableRowAction rowActionWithTitle:items[i]  handler:^(JuTableRowAction *action, NSIndexPath *indexPath) {
+            NSLog(@"当前行 %@ %@",action,indexPath);
+        }];
+        btnItems.ju_itemWidth=120;
+        if (i==1) {
+            btnItems.backgroundColor=[UIColor redColor];
+        }else{
+            btnItems.backgroundColor=[UIColor orangeColor];
+        }
+        [arrItemView addObject:btnItems];
+    }
+    JuEditTableView *table=(JuEditTableView *)self.tableView;
+    table.ju_leftRowAction=arrItemView;*/
+    
      [self.tableView registerNib:[UINib nibWithNibName:@"EditTableViewCell" bundle:nil] forCellReuseIdentifier:@"EditTableViewCell"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -59,8 +62,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 30;
 }
+
 -(BOOL)juTableView:(JuEditTableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row>7){
+    if(indexPath.row>15){
         return NO;
     }
     return YES;
@@ -88,7 +92,7 @@
 }
 - (NSArray<JuTableRowAction *> *)juTableViewLeft:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *items=@[@"标记为已读"];
-    if (indexPath.row>5) {
+    if (indexPath.row>7) {
         items=@[];
     }
     NSMutableArray *arrItemView=[NSMutableArray array];

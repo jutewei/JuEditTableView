@@ -14,12 +14,7 @@
     UIPanGestureRecognizer *ju_panGesture;
     UIView *ju_viewBack;
     CGFloat ju_itemsTotalW;
-//    BOOL isLeftPan;///< 往哪边滑动
-//    BOOL isCanDrag;///< 是否可滑动
-//    BOOL isFirstLoad;///< 第一次加载view
     __weak JuEditTableView *ju_parentTable;
-//    BOOL isAnimate;///< 正在执行动画
-//    BOOL isFirstDrag;///< 第一次拖拽
     JuEditStatus ju_EditStatus;
 }
 @end
@@ -44,7 +39,7 @@
     [super didMoveToSuperview];
     if (self.superview) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{///< 防止获取不到 indexPath
-            self.isCanEdit=[self.sh_tableView isCanEdit:self];
+            self.isCanEdit=[self.sh_tableView isCanEdit:self.indexPath];
         });
     }
 }
@@ -55,7 +50,7 @@
         return nil;
     }
     if (result==self) {
-        self.isCanEdit=[self.sh_tableView isCanEdit:self];
+        self.isCanEdit=[self.sh_tableView isCanEdit:self.indexPath];
     }
     return result;
 }
@@ -169,7 +164,7 @@
 -(void)setJuOpenRight:(BOOL)juOpenRight{
     _juOpenRight=juOpenRight;
     BOOL isClose=fabs(self.frame.origin.x)<10;
-    if (isClose&&[self.sh_tableView isCanEdit:self]) {
+    if (isClose&&[self.sh_tableView isCanEdit:self.indexPath]) {
         ju_EditStatus=[self juSetRowActions:_juOpenRight];
     }
     [self juStartEndMove:isClose];
@@ -234,14 +229,16 @@
 -(void)shSetTableIndex{
     [self sh_tableView];
     ju_parentTable.juDelegate=self;///< 每次需要重新赋值
-    ju_parentTable.ju_editIndexPath= [self juSubViewTable:ju_parentTable];
+    ju_parentTable.ju_editIndexPath= self.indexPath;
 //    [ju_parentTable juSubView:self];
 }
 -(NSArray<UIView *> *)ju_leftRowAction{
-    return [self.sh_tableView ju_leftRowAction:self];
+    return [self.sh_tableView ju_leftRowAction:self.indexPath];
 }
 -(NSArray<UIView *> *)ju_RightRowAction{
-    return [self.sh_tableView ju_RightRowAction:self];
+    return [self.sh_tableView ju_RightRowAction:self.indexPath];
 }
-
+-(NSIndexPath *)indexPath{
+    return [self juSubViewTable:ju_parentTable];
+}
 @end
