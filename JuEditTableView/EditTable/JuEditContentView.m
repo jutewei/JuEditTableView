@@ -207,6 +207,7 @@
     }completion:^(BOOL finished) {
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
+        ju_itemsTotalW=0;
         ju_parentTable.ju_editIndexPath=nil;///< 编辑结束可继续滑动
         ju_EditStatus=JuEditStatusNone;
     }];
