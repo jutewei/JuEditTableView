@@ -60,11 +60,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 28;
 }
 
 -(BOOL)juTableView:(JuEditTableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row>15){
+    if(indexPath.row>25){
         return NO;
     }
     return YES;
@@ -91,17 +91,20 @@
 
 }
 - (NSArray<JuTableRowAction *> *)juTableViewLeft:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray *items=@[@"标记为已读"];
+    NSArray *items=@[@"标记已读"];
     if (indexPath.row>7) {
-        items=@[];
+        items=@[@"标记已读",@"置顶"];
     }
     NSMutableArray *arrItemView=[NSMutableArray array];
     for (int i=0; i<items.count; i++) {
         JuTableRowAction *btnItems=[JuTableRowAction rowActionWithTitle:items[i]  handler:^(JuTableRowAction *action, NSIndexPath *indexPath) {
             NSLog(@"当前行 %@ %@",action,indexPath);
         }];
-       
-        btnItems.backgroundColor=[UIColor blueColor];
+        if(i==0){
+            btnItems.backgroundColor=[UIColor blueColor];
+        }else{
+             btnItems.backgroundColor=[UIColor purpleColor];
+        }
         [arrItemView addObject:btnItems];
     }
     return  arrItemView;
