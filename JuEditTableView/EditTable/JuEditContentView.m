@@ -177,13 +177,14 @@
             return;
         }
 
-        if(pan.state==UIGestureRecognizerStateChanged&&ju_EditStatus==JuEditStatusFirstDrag){
-            CGPoint translation = [pan translationInView:pan.view];
-            ju_EditStatus=[self juSetRowActions:translation.x<0];
-        }
         CGFloat translationX = [pan translationInView:pan.view].x;
+        if(pan.state==UIGestureRecognizerStateChanged&&ju_EditStatus==JuEditStatusFirstDrag){///< 获取滑动方向
+            ju_EditStatus=[self juSetRowActions:translationX<0];
+        }
+
+
         if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusRight&&translationX<0)||(ju_EditStatus==JuEditStatusLeft&&translationX>0)) {///< 不能拖拽或者拖拽方向与开始相反
-            pan.view.transform = CGAffineTransformMakeTranslation(MIN(translationX*0.4, 18), 0);
+            pan.view.transform = CGAffineTransformMakeTranslation(MIN(translationX*0.4, 15), 0);
             return;
         }
        
