@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I8Y-Ek-Qsh" id="1rT-43-DBZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -33,11 +33,46 @@
                             <outlet property="juDataSource" destination="4Qo-UC-cZi" id="PDf-S6-cSS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="4Ow-05-DV8"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="4Ow-05-DV8">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="bo3-h0-voL">
+                            <connections>
+                                <segue destination="iMY-Ki-LRu" kind="push" id="0RL-GA-6Lp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEU-WR-zjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="817" y="-42"/>
+        </scene>
+        <!--Ju Next Table View Controller-->
+        <scene sceneID="qsW-iG-IVr">
+            <objects>
+                <tableViewController id="iMY-Ki-LRu" customClass="JuNextTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="bXc-Ug-rRJ" customClass="JuEditTableView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="iaV-QF-hY9">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iaV-QF-hY9" id="FPp-1X-Opa">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iMY-Ki-LRu" id="nEQ-Vh-DQY"/>
+                            <outlet property="delegate" destination="iMY-Ki-LRu" id="Uvl-8C-jYh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="8R8-Xj-e1z"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gbx-cg-KpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1853" y="-129"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ag2-Cw-cRJ">

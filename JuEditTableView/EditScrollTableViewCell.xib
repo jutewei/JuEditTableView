@@ -47,7 +47,7 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5a0-iD-dyN" secondAttribute="trailing" id="3Dq-fL-CZe"/>
+                            <constraint firstAttribute="trailing" secondItem="5a0-iD-dyN" secondAttribute="trailing" constant="120" id="3Dq-fL-CZe"/>
                             <constraint firstAttribute="bottom" secondItem="5a0-iD-dyN" secondAttribute="bottom" id="Oqu-I6-4e2"/>
                             <constraint firstItem="5a0-iD-dyN" firstAttribute="leading" secondItem="4f7-cU-f3j" secondAttribute="leading" id="Z3Z-Yv-1So"/>
                             <constraint firstItem="5a0-iD-dyN" firstAttribute="top" secondItem="4f7-cU-f3j" secondAttribute="top" id="wfs-5w-blb"/>
@@ -67,6 +67,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="sh_contentView" destination="4f7-cU-f3j" id="wLn-Mx-EeW"/>
                 <outlet property="sh_vieEdit" destination="5a0-iD-dyN" id="fuM-lV-PSh"/>
             </connections>
             <point key="canvasLocation" x="-866" y="-189"/>

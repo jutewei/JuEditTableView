@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EB20E54D1DCC59ED00A05A95 /* EditScrollTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB20E54B1DCC59ED00A05A95 /* EditScrollTableViewCell.m */; };
 		EB20E54E1DCC59ED00A05A95 /* EditScrollTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB20E54C1DCC59ED00A05A95 /* EditScrollTableViewCell.xib */; };
+		EB20E5511DCC60A400A05A95 /* JuNextTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB20E5501DCC60A400A05A95 /* JuNextTableViewController.m */; };
 		EB43FAA81DCB48DC00296145 /* JuEditContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB43FAA31DCB48DC00296145 /* JuEditContentView.m */; };
 		EB43FAA91DCB48DC00296145 /* JuEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB43FAA51DCB48DC00296145 /* JuEditTableView.m */; };
 		EB43FAAA1DCB48DC00296145 /* UIView+tableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB43FAA71DCB48DC00296145 /* UIView+tableView.m */; };
@@ -32,6 +33,8 @@
 		EB20E54A1DCC59ED00A05A95 /* EditScrollTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScrollTableViewCell.h; sourceTree = "<group>"; };
 		EB20E54B1DCC59ED00A05A95 /* EditScrollTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScrollTableViewCell.m; sourceTree = "<group>"; };
 		EB20E54C1DCC59ED00A05A95 /* EditScrollTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditScrollTableViewCell.xib; sourceTree = "<group>"; };
+		EB20E54F1DCC60A400A05A95 /* JuNextTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuNextTableViewController.h; sourceTree = "<group>"; };
+		EB20E5501DCC60A400A05A95 /* JuNextTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuNextTableViewController.m; sourceTree = "<group>"; };
 		EB43FAA21DCB48DC00296145 /* JuEditContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditContentView.h; sourceTree = "<group>"; };
 		EB43FAA31DCB48DC00296145 /* JuEditContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditContentView.m; sourceTree = "<group>"; };
 		EB43FAA41DCB48DC00296145 /* JuEditTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditTableView.h; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 				EB4F43771DC8940F000CA0A7 /* EditTableViewCell.h */,
 				EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */,
 				EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */,
+				EB20E54F1DCC60A400A05A95 /* JuNextTableViewController.h */,
+				EB20E5501DCC60A400A05A95 /* JuNextTableViewController.m */,
 				EB20E54A1DCC59ED00A05A95 /* EditScrollTableViewCell.h */,
 				EB20E54B1DCC59ED00A05A95 /* EditScrollTableViewCell.m */,
 				EB20E54C1DCC59ED00A05A95 /* EditScrollTableViewCell.xib */,
@@ -242,6 +247,7 @@
 				EB4F43691DC89202000CA0A7 /* UIView+JuConstraint.m in Sources */,
 				EB43FAA81DCB48DC00296145 /* JuEditContentView.m in Sources */,
 				EB4F433A1DC891A0000CA0A7 /* main.m in Sources */,
+				EB20E5511DCC60A400A05A95 /* JuNextTableViewController.m in Sources */,
 				EB4F436B1DC89202000CA0A7 /* UIView+JuLayout.m in Sources */,
 				EB4F43791DC8940F000CA0A7 /* EditTableViewCell.m in Sources */,
 			);
