@@ -215,7 +215,7 @@
     [self juEndMove];
 }
 -(JuEditTableView *)sh_tableView{
-    if(!ju_parentTable){
+    if(!ju_parentTable&&[[self juTableView] isKindOfClass:[JuEditTableView class]]){
         ju_parentTable=(JuEditTableView *)[self juTableView];
     }
     return ju_parentTable;
@@ -229,8 +229,7 @@
 }
 ///< 设置当前row indexPath
 -(void)shSetTableIndex{
-    [self sh_tableView];
-    if([ju_parentTable isKindOfClass:[JuEditTableView class]]){
+    if ([self sh_tableView]) {
         __weak typeof(self) weakSelf=self;
         ju_parentTable.ju_editIndexPath= self.indexPath;
         ju_parentTable.juEndEdit=^(){///< 每次需要重新赋值
