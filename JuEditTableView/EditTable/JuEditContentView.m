@@ -61,8 +61,7 @@
     _isCanEdit=isCanEdit;
     if (_isCanEdit) {
         [self addPanGesture];
-    }
-    else{
+    }else{
         [self removePanGesture];
     }
 }
@@ -133,7 +132,7 @@
     if (items.count==0) return JuEditStatusNone;
     _juOpenRight=isLeft;
     [self juDeselectTable:items.count];
-      if (!ju_viewBack) {
+    if (!ju_viewBack) {
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
     }
@@ -146,7 +145,6 @@
     CGFloat itemLeft=0.01;
     for (int i=0; i<items.count; i++) {
         UIButton *btnItems=items[i];
-
         [ju_viewBack addSubview:btnItems];
         CGFloat itemW;
         if (btnItems.ju_itemWidth>0) {
