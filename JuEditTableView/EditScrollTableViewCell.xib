@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="5QX-QA-0zU" userLabel="开药" customClass="EditScrollTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5QX-QA-0zU" id="2D4-Fi-Lfs">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4f7-cU-f3j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a0-iD-dyN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="左边" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kox-jt-UgH">
+                                        <rect key="frame" x="15" y="18" width="35" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="右边" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYz-n4-kAM">
+                                        <rect key="frame" x="325" y="18" width="35" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="bYz-n4-kAM" firstAttribute="centerY" secondItem="5a0-iD-dyN" secondAttribute="centerY" id="FER-ab-dhw"/>
+                                    <constraint firstItem="Kox-jt-UgH" firstAttribute="leading" secondItem="5a0-iD-dyN" secondAttribute="leading" constant="15" id="WZj-Se-cec"/>
+                                    <constraint firstItem="Kox-jt-UgH" firstAttribute="centerY" secondItem="5a0-iD-dyN" secondAttribute="centerY" id="XEs-Us-i3X"/>
+                                    <constraint firstAttribute="trailing" secondItem="bYz-n4-kAM" secondAttribute="trailing" constant="15" id="rgr-6q-tFM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5a0-iD-dyN" secondAttribute="trailing" id="3Dq-fL-CZe"/>
+                            <constraint firstAttribute="bottom" secondItem="5a0-iD-dyN" secondAttribute="bottom" id="Oqu-I6-4e2"/>
+                            <constraint firstItem="5a0-iD-dyN" firstAttribute="leading" secondItem="4f7-cU-f3j" secondAttribute="leading" id="Z3Z-Yv-1So"/>
+                            <constraint firstItem="5a0-iD-dyN" firstAttribute="top" secondItem="4f7-cU-f3j" secondAttribute="top" id="wfs-5w-blb"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="delegate" destination="5QX-QA-0zU" id="Rxg-PY-tHE"/>
+                        </connections>
+                    </scrollView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4f7-cU-f3j" firstAttribute="leading" secondItem="2D4-Fi-Lfs" secondAttribute="leading" id="79v-Sc-mZw"/>
+                    <constraint firstItem="4f7-cU-f3j" firstAttribute="top" secondItem="2D4-Fi-Lfs" secondAttribute="top" id="PTZ-7n-uEk"/>
+                    <constraint firstItem="5a0-iD-dyN" firstAttribute="width" secondItem="2D4-Fi-Lfs" secondAttribute="width" id="Utg-iv-l9h"/>
+                    <constraint firstAttribute="trailing" secondItem="4f7-cU-f3j" secondAttribute="trailing" id="XLl-5m-jlR"/>
+                    <constraint firstItem="5a0-iD-dyN" firstAttribute="height" secondItem="2D4-Fi-Lfs" secondAttribute="height" id="oCP-xP-5xg"/>
+                    <constraint firstAttribute="bottom" secondItem="4f7-cU-f3j" secondAttribute="bottom" id="pcl-J8-t2y"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="sh_vieEdit" destination="5a0-iD-dyN" id="fuM-lV-PSh"/>
+            </connections>
+            <point key="canvasLocation" x="-866" y="-189"/>
+        </tableViewCell>
+    </objects>
+</document>

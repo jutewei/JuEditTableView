@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB20E54D1DCC59ED00A05A95 /* EditScrollTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB20E54B1DCC59ED00A05A95 /* EditScrollTableViewCell.m */; };
+		EB20E54E1DCC59ED00A05A95 /* EditScrollTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB20E54C1DCC59ED00A05A95 /* EditScrollTableViewCell.xib */; };
 		EB43FAA81DCB48DC00296145 /* JuEditContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB43FAA31DCB48DC00296145 /* JuEditContentView.m */; };
 		EB43FAA91DCB48DC00296145 /* JuEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB43FAA51DCB48DC00296145 /* JuEditTableView.m */; };
 		EB43FAAA1DCB48DC00296145 /* UIView+tableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB43FAA71DCB48DC00296145 /* UIView+tableView.m */; };
@@ -27,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB20E54A1DCC59ED00A05A95 /* EditScrollTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScrollTableViewCell.h; sourceTree = "<group>"; };
+		EB20E54B1DCC59ED00A05A95 /* EditScrollTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScrollTableViewCell.m; sourceTree = "<group>"; };
+		EB20E54C1DCC59ED00A05A95 /* EditScrollTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditScrollTableViewCell.xib; sourceTree = "<group>"; };
 		EB43FAA21DCB48DC00296145 /* JuEditContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditContentView.h; sourceTree = "<group>"; };
 		EB43FAA31DCB48DC00296145 /* JuEditContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuEditContentView.m; sourceTree = "<group>"; };
 		EB43FAA41DCB48DC00296145 /* JuEditTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuEditTableView.h; sourceTree = "<group>"; };
@@ -99,6 +104,9 @@
 				EB4F43771DC8940F000CA0A7 /* EditTableViewCell.h */,
 				EB4F43781DC8940F000CA0A7 /* EditTableViewCell.m */,
 				EB4F43721DC893E1000CA0A7 /* EditTableViewCell.xib */,
+				EB20E54A1DCC59ED00A05A95 /* EditScrollTableViewCell.h */,
+				EB20E54B1DCC59ED00A05A95 /* EditScrollTableViewCell.m */,
+				EB20E54C1DCC59ED00A05A95 /* EditScrollTableViewCell.xib */,
 				EB4F43411DC891A0000CA0A7 /* Main.storyboard */,
 				EB4F43441DC891A0000CA0A7 /* Assets.xcassets */,
 				EB4F43461DC891A0000CA0A7 /* LaunchScreen.storyboard */,
@@ -208,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB4F43481DC891A0000CA0A7 /* LaunchScreen.storyboard in Resources */,
+				EB20E54E1DCC59ED00A05A95 /* EditScrollTableViewCell.xib in Resources */,
 				EB4F43451DC891A0000CA0A7 /* Assets.xcassets in Resources */,
 				EB4F43431DC891A0000CA0A7 /* Main.storyboard in Resources */,
 				EB4F43751DC893E1000CA0A7 /* EditTableViewCell.xib in Resources */,
@@ -223,6 +232,7 @@
 			files = (
 				EB43FAA91DCB48DC00296145 /* JuEditTableView.m in Sources */,
 				EB4F436A1DC89202000CA0A7 /* UIView+JuLayGroup.m in Sources */,
+				EB20E54D1DCC59ED00A05A95 /* EditScrollTableViewCell.m in Sources */,
 				EB4F436C1DC89202000CA0A7 /* UIView+StringFrame.m in Sources */,
 				EB4F43681DC89202000CA0A7 /* UIView+Frame.m in Sources */,
 				EB4F43671DC89202000CA0A7 /* JuLayout.m in Sources */,
