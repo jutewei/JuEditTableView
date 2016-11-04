@@ -66,13 +66,13 @@
     if ([self.juDataSource respondsToSelector:@selector(juTableView: editActionsForRowAtIndexPath:)]&&indexPath) {
         return [self.juDataSource juTableView:self editActionsForRowAtIndexPath:indexPath];
     }
-    return _ju_leftRowAction;
+    return nil;
 }
 -(NSArray<UIView*>*)ju_RightRowAction:(NSIndexPath *)indexPath{
     if ([self.juDataSource respondsToSelector:@selector(juTableView: editLeftActionsForRowAtIndexPath:)]&&indexPath) {
         return [self.juDataSource juTableView:self editLeftActionsForRowAtIndexPath:indexPath];
     }
-    return _ju_RightRowAction;
+    return nil;
 }
 @end
 
