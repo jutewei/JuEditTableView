@@ -49,28 +49,29 @@
         self.juEndEdit();
     }
 }
--(BOOL)isCanEdit:(NSIndexPath *)indexPath{
+-(BOOL)cellCanEdit:(NSIndexPath *)indexPath{
     if ([self.juDataSource respondsToSelector:@selector(juTableView:canEditRowAtIndexPath:)]&&indexPath) {
         return   [self.juDataSource juTableView:self canEditRowAtIndexPath:indexPath];
     }
-    return self.ju_leftRowAction.count||self.ju_RightRowAction.count?YES:NO;
+//    return self.ju_leftRowAction.count||self.ju_RightRowAction.count?YES:NO;
+     return NO;
 }
 
--(NSArray<UIView*>*)ju_leftRowAction{
-    return [self ju_leftRowAction:nil];
-}
--(NSArray<UIView*>*)ju_RightRowAction{
-    return [self ju_RightRowAction:nil];
-}
--(NSArray<UIView*>*)ju_leftRowAction:(NSIndexPath *)indexPath{
+-(NSArray<UIView*>*)juLeftRowAction:(NSIndexPath *)indexPath{
     if ([self.juDataSource respondsToSelector:@selector(juTableView: editActionsForRowAtIndexPath:)]&&indexPath) {
         return [self.juDataSource juTableView:self editActionsForRowAtIndexPath:indexPath];
     }
+    if ([self.juDataSource respondsToSelector:@selector(juLeftRowActions)]) {
+      return  [self.juDataSource juLeftRowActions];
+    }
     return nil;
 }
--(NSArray<UIView*>*)ju_RightRowAction:(NSIndexPath *)indexPath{
+-(NSArray<UIView*>*)juRightRowAction:(NSIndexPath *)indexPath{
     if ([self.juDataSource respondsToSelector:@selector(juTableView: editLeftActionsForRowAtIndexPath:)]&&indexPath) {
         return [self.juDataSource juTableView:self editLeftActionsForRowAtIndexPath:indexPath];
+    }
+    if ([self.juDataSource respondsToSelector:@selector(juRightRowActions)]) {
+        return  [self.juDataSource juRightRowActions];
     }
     return nil;
 }

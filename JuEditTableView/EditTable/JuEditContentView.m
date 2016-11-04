@@ -35,22 +35,22 @@
         ju_panGesture=nil;
     }
 }
--(void)didMoveToSuperview{
-    [super didMoveToSuperview];
-    if (self.superview) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{///< 防止获取不到 indexPath
-            self.isCanEdit=[self.sh_tableView isCanEdit:self.indexPath];
-        });
-    }
-}
+//-(void)didMoveToSuperview{
+//    [super didMoveToSuperview];
+//    if (self.superview) {
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{///< 防止获取不到 indexPath
+//            self.isCanEdit=[self.sh_tableView isCanEdit:self.indexPath];
+//        });
+//    }
+//}
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
-    if (result==self) {
+    if (result) {
         if (ju_EditStatus>=JuEditStatusAnimate&&ju_EditStatus<=JuEditStatusClose) {
             [self juEndMove];
             return nil;
         }
-        self.isCanEdit=[self.sh_tableView isCanEdit:self.indexPath];
+        self.isCanEdit=[self.sh_tableView cellCanEdit:self.indexPath];
         ju_parentTable.slideIndexPath=self.indexPath;
     }
     return result;
@@ -165,7 +165,7 @@
 -(void)setJuOpenRight:(BOOL)juOpenRight{
     _juOpenRight=juOpenRight;
     BOOL isClose=fabs(self.originX)<10;
-    if (isClose&&[self.sh_tableView isCanEdit:self.indexPath]) {
+    if (isClose&&_isCanEdit) {
         ju_EditStatus=[self juSetRowActions:_juOpenRight];
     }
     [self juStartEndMove:isClose];
@@ -240,10 +240,10 @@
 }
 
 -(NSArray<UIView *> *)ju_leftRowAction{
-    return [self.sh_tableView ju_leftRowAction:self.indexPath];
+    return [self.sh_tableView juLeftRowAction:self.indexPath];
 }
 -(NSArray<UIView *> *)ju_RightRowAction{
-    return [self.sh_tableView ju_RightRowAction:self.indexPath];
+    return [self.sh_tableView juRightRowAction:self.indexPath];
 }
 -(NSIndexPath *)indexPath{
     return [self juSubViewTable:ju_parentTable];
