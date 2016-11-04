@@ -34,16 +34,17 @@
     }
     return  [super pointInside:point withEvent:event];
 }
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
-//    UIView *result = [super hitTest:point withEvent:event];
-//    if ([result isKindOfClass:[JuEditContentView class]]) {
-//        JuEditContentView *contentV=(id)result;
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    UIView *result = [super hitTest:point withEvent:event];
+    if ([result isKindOfClass:[JuEditContentView class]]) {
+        NSLog(@"content");
+        JuEditContentView *contentV=(id)result;
 //        NSIndexPath *indexPath=[contentV juSubViewTable:self];
 //        contentV.isCanEdit=[self isCanEdit:indexPath];
 //        self.slideIndexPath=indexPath;
-//    }
-//    return result;
-//}
+    }
+    return result;
+}
 -(void)juTableEndEdit{
     if (self.juEndEdit) {
         self.juEndEdit();

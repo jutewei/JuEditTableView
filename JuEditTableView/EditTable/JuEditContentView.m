@@ -68,13 +68,13 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     CGPoint translation = [ju_panGesture translationInView:self];
     if (gestureRecognizer==ju_panGesture) {
-        if (fabs(translation.y)>= fabs(translation.x)) {
-            return NO; // 手势冲突，解决tableview不可拖动
-        }
-        if(![ju_parentTable.slideIndexPath isEqual:self.indexPath]){///< 防止多个一起滑动
+        if (fabs(translation.y)>= fabs(translation.x)||![ju_parentTable.slideIndexPath isEqual:self.indexPath]) {// 手势冲突，解决tableview不可拖动   防止多个一起滑动
+             NSLog(@"end");
             return NO;
         }
+        return YES;
     }
+     NSLog(@"end");
     return YES;
 }
 ///< 拖动出现编辑动画
@@ -203,6 +203,7 @@
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
          self.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
+         NSLog(@"end");
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
         ju_itemsTotalW=0;
