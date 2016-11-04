@@ -230,8 +230,8 @@
 ///< 设置当前row indexPath
 -(void)shSetTableIndex{
     [self sh_tableView];
-    __weak typeof(self) weakSelf=self;
-    if(!ju_parentTable.ju_editIndexPath){
+    if([ju_parentTable isKindOfClass:[JuEditTableView class]]){
+        __weak typeof(self) weakSelf=self;
         ju_parentTable.ju_editIndexPath= self.indexPath;
         ju_parentTable.juEndEdit=^(){///< 每次需要重新赋值
             [weakSelf juEndMove];
