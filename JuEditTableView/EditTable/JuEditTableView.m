@@ -8,7 +8,7 @@
 
 #import "JuEditTableView.h"
 #import "UIView+tableView.h"
-
+#import "JuEditContentView.h"
 @implementation JuEditTableView
 
 /*
@@ -23,7 +23,6 @@
 //    return  self;
 //}
 - (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event{
-
     CGRect rectInTableView = [self rectForRowAtIndexPath:_ju_editIndexPath];
     if (_ju_editIndexPath) {
         if (point.y>CGRectGetMinY(rectInTableView)&&point.y<CGRectGetMaxY(rectInTableView)) {
@@ -32,10 +31,19 @@
             [self juTableEndEdit];
             return NO;
         }
-
     }
     return  [super pointInside:point withEvent:event];
 }
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+//    UIView *result = [super hitTest:point withEvent:event];
+//    if ([result isKindOfClass:[JuEditContentView class]]) {
+//        JuEditContentView *contentV=(id)result;
+//        NSIndexPath *indexPath=[contentV juSubViewTable:self];
+//        contentV.isCanEdit=[self isCanEdit:indexPath];
+//        self.slideIndexPath=indexPath;
+//    }
+//    return result;
+//}
 -(void)juTableEndEdit{
     if (self.juEndEdit) {
         self.juEndEdit();

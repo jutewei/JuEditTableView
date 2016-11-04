@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="I8Y-Ek-Qsh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="I8Y-Ek-Qsh">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I8Y-Ek-Qsh" id="1rT-43-DBZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -34,12 +34,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="4Ow-05-DV8">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="bo3-h0-voL"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="bo3-h0-voL">
+                            <connections>
+                                <segue destination="iMY-Ki-LRu" kind="push" id="mgt-Aq-NzZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEU-WR-zjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644" y="-143"/>
+            <point key="canvasLocation" x="1908" y="-809"/>
         </scene>
         <!--Ju Next Table View Controller-->
         <scene sceneID="qsW-iG-IVr">
@@ -54,7 +58,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iaV-QF-hY9" id="FPp-1X-Opa">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -66,17 +70,13 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8R8-Xj-e1z">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="Ral-Cv-VBn">
-                            <connections>
-                                <segue destination="4Qo-UC-cZi" kind="push" id="tT6-bu-tVP"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="Ral-Cv-VBn"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gbx-cg-KpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089" y="-390"/>
+            <point key="canvasLocation" x="2876" y="-882"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ag2-Cw-cRJ">
@@ -87,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="iMY-Ki-LRu" kind="relationship" relationship="rootViewController" id="NVE-yI-Ah9"/>
+                        <segue destination="4Qo-UC-cZi" kind="relationship" relationship="rootViewController" id="t6a-1c-ZYJ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYM-Mk-fiF" userLabel="First Responder" sceneMemberID="firstResponder"/>

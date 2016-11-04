@@ -79,13 +79,12 @@
 ///< 拖动出现编辑动画
 - (void)dragContent:(UIPanGestureRecognizer *)pan{
     static  CGFloat viewOriginX=0;
-    CGRect frame=pan.view.frame;
     if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
-        [self juStartEndMove:fabs(frame.origin.x)>40];///< 拖动停止实现动画
+        [self juStartEndMove:fabs(self.originX)>40];///< 拖动停止实现动画
         return;
     }
     else if(pan.state==UIGestureRecognizerStateBegan){
-        viewOriginX=pan.view.frame.origin.x;
+        viewOriginX=pan.view.originX;
         //        isFirstDrag=YES;
         ju_EditStatus=JuEditStatusFirstDrag;
     }
@@ -107,7 +106,7 @@
         
         CGFloat transX=fabs(translationX);
         CGFloat originX;
-        CGFloat totalX=frame.origin.x;
+        CGFloat totalX=pan.view.originX;
         if (fabs(totalX)>ju_itemsTotalW) {
             if (fabs(viewOriginX)>0) {///<防止第二次不在起始位置拖动
                 originX=transX*0.3;
@@ -151,7 +150,7 @@
         if (btnItems.ju_itemWidth>0) {
             itemW=btnItems.ju_itemWidth;
         }else{
-            itemW=[btnItems boundingWidth:200]+40;
+            itemW=[btnItems boundingWidth:200]+36;
         }
         {
             btnItems.juFrame(CGRectMake(itemLeft, 0, itemW, 0));
@@ -165,7 +164,7 @@
 ///<点击开启
 -(void)setJuOpenRight:(BOOL)juOpenRight{
     _juOpenRight=juOpenRight;
-    BOOL isClose=fabs(self.frame.origin.x)<10;
+    BOOL isClose=fabs(self.originX)<10;
     if (isClose&&[self.sh_tableView isCanEdit:self.indexPath]) {
         ju_EditStatus=[self juSetRowActions:_juOpenRight];
     }
@@ -173,7 +172,7 @@
 }
 -(void)juStartEndMove:(BOOL)open{
     if (open) {
-        CGFloat originx=self.frame.origin.x;///<防止左滑又右滑
+        CGFloat originx=self.originX;///<防止左滑又右滑
         if ((ju_EditStatus==JuEditStatusRight&&originx<0)||(ju_EditStatus==JuEditStatusLeft&&originx>0)) {
             [self juEndMove];
             return;
@@ -189,7 +188,8 @@
     if (ju_EditStatus==JuEditStatusAnimate) return;
     ju_EditStatus=JuEditStatusAnimate;
     [self shSetTableIndex];///< 出现编辑table不可滑动
-    [UIView animateWithDuration:0.2 animations:^{
+     NSTimeInterval duration=MAX((ju_itemsTotalW-fabs(self.originX))/700.0, 0.2);
+    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(_juOpenRight?-1:1), 0);
     }completion:^(BOOL finished) {
         ju_EditStatus=JuEditStatusOpened;
@@ -199,9 +199,10 @@
 -(void)juEndMove{
     if (ju_EditStatus==JuEditStatusClose) return;
     ju_EditStatus=JuEditStatusClose;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.transform = CGAffineTransformIdentity;
-    }completion:^(BOOL finished) {
+    NSTimeInterval duration=MAX(fabs(self.originX)/700.0, 0.2);
+    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+         self.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
         ju_itemsTotalW=0;
@@ -237,6 +238,7 @@
         };
     }
 }
+
 -(NSArray<UIView *> *)ju_leftRowAction{
     return [self.sh_tableView ju_leftRowAction:self.indexPath];
 }
