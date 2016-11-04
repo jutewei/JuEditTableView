@@ -51,6 +51,7 @@
             return nil;
         }
         self.isCanEdit=[self.sh_tableView isCanEdit:self.indexPath];
+        ju_parentTable.slideIndexPath=self.indexPath;
     }
     return result;
 }
@@ -68,6 +69,9 @@
     if (gestureRecognizer==ju_panGesture) {
         if (fabs(translation.y)>= fabs(translation.x)) {
             return NO; // 手势冲突，解决tableview不可拖动
+        }
+        if(![ju_parentTable.slideIndexPath isEqual:self.indexPath]){///< 防止多个一起滑动
+            return NO;
         }
     }
     return YES;
@@ -95,8 +99,7 @@
         if(pan.state==UIGestureRecognizerStateChanged&&ju_EditStatus==JuEditStatusFirstDrag){///< 获取滑动方向
             ju_EditStatus=[self juSetRowActions:translationX<0];
         }
-        
-        
+
         if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusRight&&translationX<0)||(ju_EditStatus==JuEditStatusLeft&&translationX>0)) {///< 不能拖拽或者拖拽方向与开始相反
             pan.view.transform = CGAffineTransformMakeTranslation(MIN(translationX*0.4, 15), 0);
             return;
@@ -121,13 +124,12 @@
     }
 }
 
-///< 拖到手势
+///< 初始化
 -(JuEditStatus)juSetRowActions:(BOOL)isLeft{
     UIView *supView=self.superview;
     if (!supView) return JuEditStatusNone;
     NSArray *items=isLeft?self.ju_leftRowAction:self.ju_RightRowAction;
     if (items.count==0) return JuEditStatusNone;
-    
     _juOpenRight=isLeft;
     [self juDeselectTable:items.count];
       if (!ju_viewBack) {
@@ -229,10 +231,12 @@
 -(void)shSetTableIndex{
     [self sh_tableView];
     __weak typeof(self) weakSelf=self;
-    ju_parentTable.ju_editIndexPath= self.indexPath;
-    ju_parentTable.juEndEdit=^(){///< 每次需要重新赋值
-        [weakSelf juEndMove];
-    };
+    if(!ju_parentTable.ju_editIndexPath){
+        ju_parentTable.ju_editIndexPath= self.indexPath;
+        ju_parentTable.juEndEdit=^(){///< 每次需要重新赋值
+            [weakSelf juEndMove];
+        };
+    }
 }
 -(NSArray<UIView *> *)ju_leftRowAction{
     return [self.sh_tableView ju_leftRowAction:self.indexPath];

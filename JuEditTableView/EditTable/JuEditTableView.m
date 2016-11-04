@@ -23,6 +23,7 @@
 //    return  self;
 //}
 - (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event{
+
     CGRect rectInTableView = [self rectForRowAtIndexPath:_ju_editIndexPath];
     if (_ju_editIndexPath) {
         if (point.y>CGRectGetMinY(rectInTableView)&&point.y<CGRectGetMaxY(rectInTableView)) {
@@ -33,7 +34,7 @@
         }
 
     }
-    return YES;
+    return  [super pointInside:point withEvent:event];
 }
 -(void)juTableEndEdit{
     if (self.juEndEdit) {

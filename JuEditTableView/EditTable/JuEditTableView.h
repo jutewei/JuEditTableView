@@ -11,8 +11,12 @@
 @class JuTableRowAction;
 @interface JuEditTableView : UITableView
 @property (nonatomic,assign) IBOutlet id<JuTableViewDataSource> juDataSource;
-@property (nonatomic,weak)   NSIndexPath *ju_editIndexPath;
+
+@property (nonatomic,weak)  NSIndexPath *slideIndexPath;///< 侧滑之前防止多个一起滑动（内部使用）
+@property (nonatomic,weak)   NSIndexPath *ju_editIndexPath;///< 当前侧滑出的cell（内部文件类）
+
 @property (nonatomic,copy)   dispatch_block_t juEndEdit;
+
 @property (nonatomic,strong)NSArray<UIView*> *ju_leftRowAction;///< 左边action
 @property (nonatomic,strong)NSArray<UIView*> *ju_RightRowAction;///< 右边action
 
