@@ -104,10 +104,10 @@
 }
 -(void)juTouchEdit:(JuTableRowAction *)sender{
     if (self.ju_handler) {
-        JuEditTableView *table=(JuEditTableView *)[self juTableView];
-        [table juTableEndEdit];
-        NSIndexPath *indexPath=[self juSubViewTable:table];
-        self.ju_handler(sender,indexPath);
+//        JuEditTableView *table=(JuEditTableView *)[self juTableView];
+//        [table juTableEndEdit];
+//        NSIndexPath *indexPath=[self juSubViewTable:[self juTableView]];
+        self.ju_handler(sender,[self juSubViewTable:[self juTableView]]);
     }
 }
 

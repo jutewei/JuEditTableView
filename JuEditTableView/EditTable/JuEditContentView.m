@@ -52,6 +52,8 @@
         }
         self.isCanEdit=[self.sh_tableView cellCanEdit:self.indexPath];
         ju_parentTable.slideIndexPath=self.indexPath;
+    }else{
+        [self juEndMove];
     }
     return result;
 }

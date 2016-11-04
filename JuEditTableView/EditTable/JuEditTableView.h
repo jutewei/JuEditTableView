@@ -44,5 +44,5 @@
 typedef void(^JuHandler)(JuTableRowAction *action, NSIndexPath *indexPath);
 + (instancetype)rowActionWithTitle:(NSString *)title image:(NSString *)imageName handler:(JuHandler)handler;
 + (instancetype)rowActionWithTitle:(NSString *)title handler:(JuHandler)handler;
-@property CGFloat juItemWidth;
+//@property CGFloat juItemWidth;
 @end
