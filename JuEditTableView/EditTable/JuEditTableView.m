@@ -38,7 +38,7 @@
     UIView *result = [super hitTest:point withEvent:event];
     if ([result isKindOfClass:[JuEditContentView class]]) {
         NSLog(@"content");
-        JuEditContentView *contentV=(id)result;
+//        JuEditContentView *contentV=(id)result;
 //        NSIndexPath *indexPath=[contentV juSubViewTable:self];
 //        contentV.isCanEdit=[self isCanEdit:indexPath];
 //        self.slideIndexPath=indexPath;
