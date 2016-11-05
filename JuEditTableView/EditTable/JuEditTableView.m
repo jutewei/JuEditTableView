@@ -20,7 +20,6 @@
 */
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event{
-    NSLog(@"1");
     if (self.ju_ContentView.isStartEdit) {
          CGRect rectInTableView = [self rectForRowAtIndexPath:[self.ju_ContentView juSubViewTable:self]];
         if (point.y>CGRectGetMinY(rectInTableView)&&point.y<CGRectGetMaxY(rectInTableView)) {
@@ -32,19 +31,13 @@
     }
     return  [super pointInside:point withEvent:event];
 }
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
-//    UIView *result = [super hitTest:point withEvent:event];
-////    NSLog(@"1");
-//
-//    if ([result isKindOfClass:[JuEditContentView class]]) {
-//        NSLog(@"content");
-////        JuEditContentView *contentV=(id)result;
-////        NSIndexPath *indexPath=[contentV juSubViewTable:self];
-////        contentV.isCanEdit=[self isCanEdit:indexPath];
-////        self.dragIndexPath=indexPath;
-//    }
-//    return result;
-//}
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    UIView *result = [super hitTest:point withEvent:event];
+    if ([result isKindOfClass:[JuEditContentView class]]) {
+        NSLog(@"content");
+    }
+    return result;
+}
 -(void)juTableEndEdit{
     [self.ju_ContentView juEndMove];
 }

@@ -199,6 +199,7 @@
 ///< 结束编辑
 -(void)juEndMove{
     if (ju_EditStatus==JuEditStatusClose) return;
+    [self removePanGesture];
     ju_EditStatus=JuEditStatusClose;
     NSTimeInterval duration=MAX(fabs(self.originX)/700.0, 0.2);
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -208,7 +209,6 @@
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
         ju_itemsTotalW=0;
-//        ju_parentTable.ju_editIndexPath=nil;///< 编辑结束可继续滑动
         self.isStartEdit=NO;
         ju_EditStatus=JuEditStatusNone;
     }];
