@@ -10,8 +10,8 @@
 #import "UIView+tableView.h"
 
 @interface JuEditTableView (){
-//    NSIndexPath *lastIndexPath;
-   __weak UIPanGestureRecognizer *ju_ScrollViewPan;
+    NSIndexPath *ju_lastIndexPath;///< 判断上个cellrow
+//   __weak UIPanGestureRecognizer *ju_ScrollViewPan;///< 判断手指离开屏幕
 }
 
 @end
@@ -28,33 +28,32 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if (self) {
-        for (UIPanGestureRecognizer *pan in self.gestureRecognizers) {
-            if ([pan isKindOfClass:[UIPanGestureRecognizer class]]) {
-                ju_ScrollViewPan=pan;
-                [ju_ScrollViewPan addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:@"jutableview"];
-            }
-        }
+        [self addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:@"jutableview"];
+//        for (UIPanGestureRecognizer *pan in self.gestureRecognizers) {
+//            if ([pan isKindOfClass:[UIPanGestureRecognizer class]]) {
+//                ju_ScrollViewPan=pan;
+//                [ju_ScrollViewPan addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:@"jutableview"];
+//            }
+//        }
     }
     return self;
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:@"state"]) {
-        UIGestureRecognizerState panState=[change[@"new"] integerValue];
-        if (panState==UIGestureRecognizerStateEnded&&self.ju_ContentView.isStartEdit) {
-            [self.ju_ContentView juEndMove];
-        }
+    if (self.ju_ContentView.isStartEdit&&![self.indexPathsForVisibleRows containsObject:ju_lastIndexPath]) {
+        [self.ju_ContentView juEndMove];
     }
-//    if (![lastIndexPath isEqual:self.indexPath]) {
-//        if (self.ju_ContentView.isStartEdit) {
-//            [self.ju_ContentView juEndMove:0];
+//    if ([keyPath isEqualToString:@"state"]) {
+//        UIGestureRecognizerState panState=[change[@"new"] integerValue];
+//        if (panState==UIGestureRecognizerStateEnded&&self.ju_ContentView.isStartEdit) {
+//            [self.ju_ContentView juEndMove];
 //        }
 //    }
-//    lastIndexPath=self.indexPath;
 }
 - (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event{
     if (self.ju_ContentView.isStartEdit) {
          CGRect rectInTableView = [self rectForRowAtIndexPath:self.indexPath];
         if (point.y>CGRectGetMinY(rectInTableView)&&point.y<CGRectGetMaxY(rectInTableView)) {
+            ju_lastIndexPath=self.indexPath;
             return YES;
         }else{
              [self.ju_ContentView juEndMove];
@@ -65,11 +64,11 @@
 }
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
-    if (result.superview.tag==1989918) {
+    if (result.superview.tag==1989918) {///<
         if (![result isKindOfClass:[JuTableRowAction class]]) {
              [self.ju_ContentView juEndMove];
         }
-        NSLog(@"content");
+//        NSLog(@"content");
     }
     return result;
 }
@@ -110,7 +109,8 @@
     return nil;
 }
 -(void)dealloc{
-     [ju_ScrollViewPan removeObserver:self forKeyPath:@"state" context:@"jutableview"];
+//     [ju_ScrollViewPan removeObserver:self forKeyPath:@"state" context:@"jutableview"];
+    [self removeObserver:self forKeyPath:@"contentOffset" context:@"jutableview"];
 }
 @end
 
@@ -147,8 +147,7 @@
         self.ju_handler(sender,indexPath);
     }
 }
--(void)dealloc{
-    ;
-}
-
+//-(void)dealloc{
+//    ;
+//}
 @end

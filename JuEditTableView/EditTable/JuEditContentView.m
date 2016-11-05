@@ -179,7 +179,6 @@
             [self juEndMove];
             return;
         }
-        
         [self juStartMove];
     }else{
         [self juEndMove];
@@ -205,7 +204,7 @@
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
          self.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-         NSLog(@"end 3");
+//         NSLog(@"end 3");
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
         ju_itemsTotalW=0;
