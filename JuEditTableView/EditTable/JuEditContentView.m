@@ -35,6 +35,7 @@
         ju_panGesture=nil;
     }
 }
+
 //-(void)didMoveToSuperview{
 //    [super didMoveToSuperview];
 //    if (self.superview) {
@@ -51,10 +52,10 @@
             return nil;
         }
          self.ju_parentTable.ju_ContentView=self;
-        
-    }else{
-        [self juEndMove];
     }
+//    else{
+       // [self juEndMove];
+//    }
     return result;
 }
 -(void)setIsCanEdit:(BOOL)isCanEdit{
@@ -137,6 +138,7 @@
         ju_viewBack=nil;
     }
     ju_viewBack=[[UIView alloc]init];
+    ju_viewBack.tag=1989918;
     [ju_viewBack setClipsToBounds:YES];
     [supView insertSubview:ju_viewBack belowSubview:self];
     {
@@ -187,8 +189,6 @@
     if (ju_itemsTotalW==0) return;
     if (ju_EditStatus==JuEditStatusAnimate||ju_EditStatus==JuEditStatusNone) return;
     ju_EditStatus=JuEditStatusAnimate;
-//    [self shSetTableIndex];///< 出现编辑table不可滑动
-//    self.isStartEdit=YES;
      NSTimeInterval duration=MAX((ju_itemsTotalW-fabs(self.originX))/700.0, 0.2);
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(_juOpenRight?-1:1), 0);

@@ -9,6 +9,13 @@
 #import "JuEditTableView.h"
 #import "UIView+tableView.h"
 
+@interface JuEditTableView (){
+//    NSIndexPath *lastIndexPath;
+   __weak UIPanGestureRecognizer *ju_ScrollViewPan;
+}
+
+@end
+
 @implementation JuEditTableView
 
 /*
@@ -18,7 +25,32 @@
     // Drawing code
 }
 */
-
+-(instancetype)initWithCoder:(NSCoder *)aDecoder{
+    self=[super initWithCoder:aDecoder];
+    if (self) {
+        for (UIPanGestureRecognizer *pan in self.gestureRecognizers) {
+            if ([pan isKindOfClass:[UIPanGestureRecognizer class]]) {
+                ju_ScrollViewPan=pan;
+                [ju_ScrollViewPan addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:@"jutableview"];
+            }
+        }
+    }
+    return self;
+}
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"state"]) {
+        UIGestureRecognizerState panState=[change[@"new"] integerValue];
+        if (panState==UIGestureRecognizerStateEnded&&self.ju_ContentView.isStartEdit) {
+            [self.ju_ContentView juEndMove];
+        }
+    }
+//    if (![lastIndexPath isEqual:self.indexPath]) {
+//        if (self.ju_ContentView.isStartEdit) {
+//            [self.ju_ContentView juEndMove:0];
+//        }
+//    }
+//    lastIndexPath=self.indexPath;
+}
 - (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event{
     if (self.ju_ContentView.isStartEdit) {
          CGRect rectInTableView = [self rectForRowAtIndexPath:self.indexPath];
@@ -33,7 +65,10 @@
 }
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
-    if ([result isKindOfClass:[JuEditContentView class]]) {
+    if (result.superview.tag==1989918) {
+        if (![result isKindOfClass:[JuTableRowAction class]]) {
+             [self.ju_ContentView juEndMove];
+        }
         NSLog(@"content");
     }
     return result;
@@ -41,7 +76,6 @@
 -(NSIndexPath *)indexPath{
     return [self.ju_ContentView juSubViewTable:self];
 }
-
 /**
  设置滑动手势
  */
@@ -76,7 +110,7 @@
     return nil;
 }
 -(void)dealloc{
-    ;
+     [ju_ScrollViewPan removeObserver:self forKeyPath:@"state" context:@"jutableview"];
 }
 @end
 
@@ -107,7 +141,10 @@
 }
 -(void)juTouchEdit:(JuTableRowAction *)sender{
     if (self.ju_handler) {
-        self.ju_handler(sender,[self juSubViewTable:[self juTableView]]);
+        JuEditTableView *table=(id)[self juTableView];
+        [table.ju_ContentView juEndMove];
+        NSIndexPath *indexPath=[self juSubViewTable:table];
+        self.ju_handler(sender,indexPath);
     }
 }
 -(void)dealloc{
