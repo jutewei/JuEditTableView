@@ -20,5 +20,7 @@ typedef NS_ENUM(NSInteger,JuEditStatus){
 
 @interface JuEditContentView : UIView
 @property (nonatomic) BOOL juOpenRight;
+@property (nonatomic,copy)NSArray<UIView*> *ju_leftRowAction;///< 左边action
+@property (nonatomic,copy)NSArray<UIView*> *ju_RightRowAction;///< 右边action
 @property (nonatomic,assign) BOOL isCanEdit;
 @end

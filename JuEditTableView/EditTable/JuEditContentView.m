@@ -50,8 +50,8 @@
             [self juEndMove];
             return nil;
         }
-        self.isCanEdit=[self.sh_tableView cellCanEdit:self.indexPath];
-        ju_parentTable.slideIndexPath=self.indexPath;
+//        self.isCanEdit=[self.sh_tableView cellCanEdit:self.indexPath];
+//        ju_parentTable.slideIndexPath=self.indexPath;
     }else{
         [self juEndMove];
     }
@@ -68,13 +68,13 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     CGPoint translation = [ju_panGesture translationInView:self];
     if (gestureRecognizer==ju_panGesture) {
-        if (fabs(translation.y)>= fabs(translation.x)||![ju_parentTable.slideIndexPath isEqual:self.indexPath]) {// 手势冲突，解决tableview不可拖动   防止多个一起滑动
-             NSLog(@"end");
+        if (fabs(translation.y)>= fabs(translation.x)||![self.sh_tableView.slideIndexPath isEqual:self.indexPath]) {// 手势冲突，解决tableview不可拖动   防止多个一起滑动
+            [self juCleanObject];
             return NO;
         }
         return YES;
     }
-     NSLog(@"end");
+    [self juCleanObject];
     return YES;
 }
 ///< 拖动出现编辑动画
@@ -203,15 +203,19 @@
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
          self.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-         NSLog(@"end");
-        [ju_viewBack removeFromSuperview];
-        ju_viewBack=nil;
-        ju_itemsTotalW=0;
-        ju_parentTable.ju_editIndexPath=nil;///< 编辑结束可继续滑动
-        ju_EditStatus=JuEditStatusNone;
+        [self juCleanObject];
     }];
 }
-
+-(void)juCleanObject{
+    NSLog(@"end");
+    [ju_viewBack removeFromSuperview];
+    ju_viewBack=nil;
+    self.ju_RightRowAction=nil;
+    self.ju_leftRowAction=nil;
+    ju_itemsTotalW=0;
+    ju_parentTable.ju_editIndexPath=nil;///< 编辑结束可继续滑动
+    ju_EditStatus=JuEditStatusNone;
+}
 #pragma mark cellDelegate
 -(void)JuEndEditCell{
     [self juEndMove];
@@ -240,13 +244,13 @@
     }
 }
 
--(NSArray<UIView *> *)ju_leftRowAction{
-    return [self.sh_tableView juLeftRowAction:self.indexPath];
-}
--(NSArray<UIView *> *)ju_RightRowAction{
-    return [self.sh_tableView juRightRowAction:self.indexPath];
-}
+//-(NSArray<UIView *> *)ju_leftRowAction{
+//    return [self.sh_tableView juLeftRowAction:self.indexPath];
+//}
+//-(NSArray<UIView *> *)ju_RightRowAction{
+//    return [self.sh_tableView juRightRowAction:self.indexPath];
+//}
 -(NSIndexPath *)indexPath{
-    return [self juSubViewTable:ju_parentTable];
+    return [self juSubViewTable:self.sh_tableView];
 }
 @end

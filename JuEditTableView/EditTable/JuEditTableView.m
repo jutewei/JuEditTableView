@@ -36,12 +36,16 @@
 }
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
-    if ([result isKindOfClass:[JuEditContentView class]]) {
-        NSLog(@"content");
-//        JuEditContentView *contentV=(id)result;
-//        NSIndexPath *indexPath=[contentV juSubViewTable:self];
-//        contentV.isCanEdit=[self isCanEdit:indexPath];
-//        self.slideIndexPath=indexPath;
+    UIView *supView= [result JuEditContentView];
+    if ([supView isKindOfClass:[JuEditContentView class]]) {
+        JuEditContentView *contentV=(id)supView;
+        NSIndexPath *indexPath=[contentV juSubViewTable:self];
+        if ([indexPath isEqual:self.slideIndexPath]) {
+            contentV.ju_leftRowAction=[self juLeftRowAction:indexPath];
+            contentV.ju_RightRowAction=[self juRightRowAction:indexPath];
+            contentV.isCanEdit=[self cellCanEdit:indexPath];
+        }
+        self.slideIndexPath=indexPath;
     }
     return result;
 }

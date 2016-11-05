@@ -8,6 +8,7 @@
 
 #import "UIView+tableView.h"
 #import <objc/runtime.h>
+#import "JuEditContentView.h"
 @implementation UIView (tableView)
 -(NSIndexPath *)juSubViewTable:(UITableView *)tableView{
     UIView *superView=self;
@@ -29,6 +30,16 @@
         superView=[superView superview];
     }
     return (UITableView *)superView;
+}
+-(JuEditContentView *)JuEditContentView{
+    UIView *superView=self;
+    while (superView) {
+        if ([superView isKindOfClass:[JuEditContentView class]]) {
+            break;
+        }
+        superView=[superView superview];
+    }
+    return (JuEditContentView *)superView;
 }
 -(CGFloat)ju_itemWidth{
     return [objc_getAssociatedObject(self, @selector(ju_itemWidth)) floatValue];
