@@ -8,7 +8,7 @@
 
 #import "JuEditTableView.h"
 #import "UIView+tableView.h"
-#import "JuEditContentView.h"
+
 @implementation JuEditTableView
 
 /*
@@ -18,13 +18,11 @@
     // Drawing code
 }
 */
-//-(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
-//{
-//    return  self;
-//}
+
 - (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event{
-    CGRect rectInTableView = [self rectForRowAtIndexPath:_ju_editIndexPath];
-    if (_ju_editIndexPath) {
+    NSLog(@"1");
+    if (self.ju_ContentView.isStartEdit) {
+         CGRect rectInTableView = [self rectForRowAtIndexPath:[self.ju_ContentView juSubViewTable:self]];
         if (point.y>CGRectGetMinY(rectInTableView)&&point.y<CGRectGetMaxY(rectInTableView)) {
             return YES;
         }else{
@@ -34,21 +32,21 @@
     }
     return  [super pointInside:point withEvent:event];
 }
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
-    UIView *result = [super hitTest:point withEvent:event];
-    if ([result isKindOfClass:[JuEditContentView class]]) {
-        NSLog(@"content");
-//        JuEditContentView *contentV=(id)result;
-//        NSIndexPath *indexPath=[contentV juSubViewTable:self];
-//        contentV.isCanEdit=[self isCanEdit:indexPath];
-//        self.slideIndexPath=indexPath;
-    }
-    return result;
-}
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+//    UIView *result = [super hitTest:point withEvent:event];
+////    NSLog(@"1");
+//
+//    if ([result isKindOfClass:[JuEditContentView class]]) {
+//        NSLog(@"content");
+////        JuEditContentView *contentV=(id)result;
+////        NSIndexPath *indexPath=[contentV juSubViewTable:self];
+////        contentV.isCanEdit=[self isCanEdit:indexPath];
+////        self.dragIndexPath=indexPath;
+//    }
+//    return result;
+//}
 -(void)juTableEndEdit{
-    if (self.juEndEdit) {
-        self.juEndEdit();
-    }
+    [self.ju_ContentView juEndMove];
 }
 -(BOOL)cellCanEdit:(NSIndexPath *)indexPath{
     if ([self.juDataSource respondsToSelector:@selector(juTableView:canEditRowAtIndexPath:)]&&indexPath) {

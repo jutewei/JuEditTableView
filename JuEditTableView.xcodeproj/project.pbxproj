@@ -151,10 +151,10 @@
 		EB4F437D1DC8A135000CA0A7 /* EditTable */ = {
 			isa = PBXGroup;
 			children = (
-				EB43FAA21DCB48DC00296145 /* JuEditContentView.h */,
-				EB43FAA31DCB48DC00296145 /* JuEditContentView.m */,
 				EB43FAA41DCB48DC00296145 /* JuEditTableView.h */,
 				EB43FAA51DCB48DC00296145 /* JuEditTableView.m */,
+				EB43FAA21DCB48DC00296145 /* JuEditContentView.h */,
+				EB43FAA31DCB48DC00296145 /* JuEditContentView.m */,
 				EB43FAA61DCB48DC00296145 /* UIView+tableView.h */,
 				EB43FAA71DCB48DC00296145 /* UIView+tableView.m */,
 			);

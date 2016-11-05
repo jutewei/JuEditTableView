@@ -19,6 +19,9 @@ typedef NS_ENUM(NSInteger,JuEditStatus){
 };///<三个同时存在并且优先级一样就会冲突
 
 @interface JuEditContentView : UIView
+///< 结束编辑
+-(void)juEndMove;
+@property (nonatomic) BOOL isStartEdit;
 @property (nonatomic) BOOL juOpenRight;
 @property (nonatomic,assign) BOOL isCanEdit;
 @end

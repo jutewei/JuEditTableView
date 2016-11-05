@@ -34,7 +34,7 @@
     [self removeGestureRecognizer:sh_closeEdit];
     sh_closeEdit=nil;
 //    if (isClose) {
-        self.sh_EditTable.ju_editIndexPath=nil;
+//        self.sh_EditTable.ju_editIndexPath=nil;
 //    }
 }
 -(void)shTapGesture{
@@ -44,10 +44,10 @@
 }
 -(JuEditTableView *)sh_EditTable{
     __weak JuEditTableView *table=(JuEditTableView *)[self juTableView];
-    table.juEndEdit=^(){
-        [self shTouchEdit:nil];
-    };
-    table.ju_editIndexPath=[self juSubViewTable:table];
+//    table.juEndEdit=^(){
+//        [self shTouchEdit:nil];
+//    };
+//    table.ju_editIndexPath=[self juSubViewTable:table];
     return table;
 }
 -(void)shSetEditView{

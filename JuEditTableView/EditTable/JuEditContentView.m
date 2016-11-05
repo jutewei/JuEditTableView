@@ -51,7 +51,7 @@
             return nil;
         }
         self.isCanEdit=[self.sh_tableView cellCanEdit:self.indexPath];
-        ju_parentTable.slideIndexPath=self.indexPath;
+        ju_parentTable.ju_ContentView=self;
     }else{
         [self juEndMove];
     }
@@ -68,17 +68,18 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
     CGPoint translation = [ju_panGesture translationInView:self];
     if (gestureRecognizer==ju_panGesture) {
-        if (fabs(translation.y)>= fabs(translation.x)||![ju_parentTable.slideIndexPath isEqual:self.indexPath]) {// 手势冲突，解决tableview不可拖动   防止多个一起滑动
-             NSLog(@"end");
+        if (fabs(translation.y)>= fabs(translation.x)) {// 手势冲突，解决tableview不可拖动
             return NO;
         }
-        return YES;
     }
-     NSLog(@"end");
     return YES;
 }
 ///< 拖动出现编辑动画
 - (void)dragContent:(UIPanGestureRecognizer *)pan{
+   
+    if (![ju_parentTable.ju_ContentView isEqual:self]) {
+        return;///防止多个一起滑动
+    }
     static  CGFloat viewOriginX=0;
     if (pan.state == UIGestureRecognizerStateEnded || pan.state == UIGestureRecognizerStateCancelled) {
         [self juStartEndMove:fabs(self.originX)>40];///< 拖动停止实现动画
@@ -86,7 +87,6 @@
     }
     else if(pan.state==UIGestureRecognizerStateBegan){
         viewOriginX=pan.view.originX;
-        //        isFirstDrag=YES;
         ju_EditStatus=JuEditStatusFirstDrag;
     }
     else{
@@ -185,9 +185,10 @@
 }
 -(void)juStartMove{
     if (ju_itemsTotalW==0) return;
-    if (ju_EditStatus==JuEditStatusAnimate) return;
+    if (ju_EditStatus==JuEditStatusAnimate||ju_EditStatus==JuEditStatusNone) return;
     ju_EditStatus=JuEditStatusAnimate;
-    [self shSetTableIndex];///< 出现编辑table不可滑动
+//    [self shSetTableIndex];///< 出现编辑table不可滑动
+//    self.isStartEdit=YES;
      NSTimeInterval duration=MAX((ju_itemsTotalW-fabs(self.originX))/700.0, 0.2);
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(_juOpenRight?-1:1), 0);
@@ -203,18 +204,14 @@
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
          self.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-         NSLog(@"end");
+         NSLog(@"end 3");
         [ju_viewBack removeFromSuperview];
         ju_viewBack=nil;
         ju_itemsTotalW=0;
-        ju_parentTable.ju_editIndexPath=nil;///< 编辑结束可继续滑动
+//        ju_parentTable.ju_editIndexPath=nil;///< 编辑结束可继续滑动
+        self.isStartEdit=NO;
         ju_EditStatus=JuEditStatusNone;
     }];
-}
-
-#pragma mark cellDelegate
--(void)JuEndEditCell{
-    [self juEndMove];
 }
 -(JuEditTableView *)sh_tableView{
     if(!ju_parentTable&&[[self juTableView] isKindOfClass:[JuEditTableView class]]){
@@ -225,20 +222,22 @@
 ///< 取消table选中
 -(void)juDeselectTable:(BOOL)isDrag{
     if (isDrag) {
-        [self shSetTableIndex];///< 出现编辑table不可滑动
-        [self.sh_tableView deselectRowAtIndexPath:ju_parentTable.ju_editIndexPath animated:NO];
+//        [self shSetTableIndex];///< 出现编辑table不可滑动
+        self.isStartEdit=YES;
+        [self.sh_tableView deselectRowAtIndexPath:self.indexPath animated:NO];
     }
 }
 ///< 设置当前row indexPath
--(void)shSetTableIndex{
-    if ([self sh_tableView]) {
-        __weak typeof(self) weakSelf=self;
-        ju_parentTable.ju_editIndexPath= self.indexPath;
-        ju_parentTable.juEndEdit=^(){///< 每次需要重新赋值
-            [weakSelf juEndMove];
-        };
-    }
-}
+//-(void)shSetTableIndex{
+//    if ([self sh_tableView]) {
+//        __weak typeof(self) weakSelf=self;
+//        self.isStartEdit=YES;
+//        ju_parentTable.ju_editIndexPath= self.indexPath;
+//        ju_parentTable.juEndEdit=^(){///< 每次需要重新赋值
+//            [weakSelf juEndMove];
+//        };
+//    }
+//}
 
 -(NSArray<UIView *> *)ju_leftRowAction{
     return [self.sh_tableView juLeftRowAction:self.indexPath];
