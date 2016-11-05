@@ -22,9 +22,9 @@
 //@property (nonatomic,copy)NSArray<UIView*> *ju_leftRowAction;///< 左边action
 //@property (nonatomic,copy)NSArray<UIView*> *ju_RightRowAction;///< 右边action
 
--(BOOL)cellCanEdit:(NSIndexPath *)indexPath;
--(NSArray<UIView*>*)juLeftRowAction:(NSIndexPath *)indexPath;
--(NSArray<UIView*>*)juRightRowAction:(NSIndexPath *)indexPath;
+-(BOOL)cellCanEdit;
+-(NSArray<UIView*>*)juLeftRowAction;
+-(NSArray<UIView*>*)juRightRowAction;
 
 @end
 
@@ -33,8 +33,8 @@
 
 @optional
 
--(NSArray<UIView*>*)juLeftRowActions;///< 左边统一样式
--(NSArray<UIView*>*)juRightRowActions;///< 右边统一样式
+-(NSArray<UIView*>*)juTableViewLeftRowActions;///< 左边统一样式
+-(NSArray<UIView*>*)juTableViewRightRowActions;///< 右边统一样式
 
 - (NSArray<JuTableRowAction *> *)juTableView:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath;///< 默认右边
 - (NSArray<JuTableRowAction *> *)juTableView:(JuEditTableView *)tableView editLeftActionsForRowAtIndexPath:(NSIndexPath *)indexPath;

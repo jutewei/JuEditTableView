@@ -72,6 +72,7 @@
     return YES;
 }
 - (NSArray<JuTableRowAction *> *)juTableView:(JuEditTableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"初始化");
     NSArray *items=@[@"更多",@"编辑",@"删除"];
     NSArray *colors=@[[UIColor brownColor],[UIColor orangeColor],[UIColor redColor]];
     NSMutableArray *arrItemView=[NSMutableArray array];

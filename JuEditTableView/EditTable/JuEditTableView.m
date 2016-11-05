@@ -21,11 +21,11 @@
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event{
     if (self.ju_ContentView.isStartEdit) {
-         CGRect rectInTableView = [self rectForRowAtIndexPath:[self.ju_ContentView juSubViewTable:self]];
+         CGRect rectInTableView = [self rectForRowAtIndexPath:self.indexPath];
         if (point.y>CGRectGetMinY(rectInTableView)&&point.y<CGRectGetMaxY(rectInTableView)) {
             return YES;
         }else{
-            [self juTableEndEdit];
+             [self.ju_ContentView juEndMove];
             return NO;
         }
     }
@@ -38,34 +38,45 @@
     }
     return result;
 }
--(void)juTableEndEdit{
-    [self.ju_ContentView juEndMove];
+-(NSIndexPath *)indexPath{
+    return [self.ju_ContentView juSubViewTable:self];
 }
--(BOOL)cellCanEdit:(NSIndexPath *)indexPath{
-    if ([self.juDataSource respondsToSelector:@selector(juTableView:canEditRowAtIndexPath:)]&&indexPath) {
-        return   [self.juDataSource juTableView:self canEditRowAtIndexPath:indexPath];
+
+/**
+ 设置滑动手势
+ */
+-(void)setJu_ContentView:(JuEditContentView *)ju_ContentView{
+    _ju_ContentView=ju_ContentView;
+    _ju_ContentView.isCanEdit=[self cellCanEdit];
+}
+-(BOOL)cellCanEdit{
+    if ([self.juDataSource respondsToSelector:@selector(juTableView:canEditRowAtIndexPath:)]) {
+        return   [self.juDataSource juTableView:self canEditRowAtIndexPath:self.indexPath];
     }
 //    return self.ju_leftRowAction.count||self.ju_RightRowAction.count?YES:NO;
      return NO;
 }
 
--(NSArray<UIView*>*)juLeftRowAction:(NSIndexPath *)indexPath{
-    if ([self.juDataSource respondsToSelector:@selector(juTableView: editActionsForRowAtIndexPath:)]&&indexPath) {
-        return [self.juDataSource juTableView:self editActionsForRowAtIndexPath:indexPath];
+-(NSArray<UIView*>*)juLeftRowAction{
+    if ([self.juDataSource respondsToSelector:@selector(juTableView: editActionsForRowAtIndexPath:)]) {
+        return [self.juDataSource juTableView:self editActionsForRowAtIndexPath:self.indexPath];
     }
-    if ([self.juDataSource respondsToSelector:@selector(juLeftRowActions)]) {
-      return  [self.juDataSource juLeftRowActions];
+    if ([self.juDataSource respondsToSelector:@selector(juTableViewLeftRowActions)]) {
+      return  [self.juDataSource juTableViewLeftRowActions];
     }
     return nil;
 }
--(NSArray<UIView*>*)juRightRowAction:(NSIndexPath *)indexPath{
-    if ([self.juDataSource respondsToSelector:@selector(juTableView: editLeftActionsForRowAtIndexPath:)]&&indexPath) {
-        return [self.juDataSource juTableView:self editLeftActionsForRowAtIndexPath:indexPath];
+-(NSArray<UIView*>*)juRightRowAction{
+    if ([self.juDataSource respondsToSelector:@selector(juTableView: editLeftActionsForRowAtIndexPath:)]) {
+        return [self.juDataSource juTableView:self editLeftActionsForRowAtIndexPath:self.indexPath];
     }
-    if ([self.juDataSource respondsToSelector:@selector(juRightRowActions)]) {
-        return  [self.juDataSource juRightRowActions];
+    if ([self.juDataSource respondsToSelector:@selector(juTableViewRightRowActions)]) {
+        return  [self.juDataSource juTableViewRightRowActions];
     }
     return nil;
+}
+-(void)dealloc{
+    ;
 }
 @end
 
@@ -96,12 +107,11 @@
 }
 -(void)juTouchEdit:(JuTableRowAction *)sender{
     if (self.ju_handler) {
-//        JuEditTableView *table=(JuEditTableView *)[self juTableView];
-//        [table juTableEndEdit];
-//        NSIndexPath *indexPath=[self juSubViewTable:[self juTableView]];
         self.ju_handler(sender,[self juSubViewTable:[self juTableView]]);
     }
 }
-
+-(void)dealloc{
+    ;
+}
 
 @end

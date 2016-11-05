@@ -39,7 +39,7 @@
 //    [super didMoveToSuperview];
 //    if (self.superview) {
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{///< 防止获取不到 indexPath
-//            self.isCanEdit=[self.sh_tableView isCanEdit:self.indexPath];
+//            self.isCanEdit=[self.ju_parentTable isCanEdit:self.indexPath];
 //        });
 //    }
 //}
@@ -50,8 +50,8 @@
             [self juEndMove];
             return nil;
         }
-        self.isCanEdit=[self.sh_tableView cellCanEdit:self.indexPath];
-        ju_parentTable.ju_ContentView=self;
+         self.ju_parentTable.ju_ContentView=self;
+        
     }else{
         [self juEndMove];
     }
@@ -199,7 +199,7 @@
 ///< 结束编辑
 -(void)juEndMove{
     if (ju_EditStatus==JuEditStatusClose) return;
-    [self removePanGesture];
+    self.isCanEdit=NO;
     ju_EditStatus=JuEditStatusClose;
     NSTimeInterval duration=MAX(fabs(self.originX)/700.0, 0.2);
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -213,7 +213,7 @@
         ju_EditStatus=JuEditStatusNone;
     }];
 }
--(JuEditTableView *)sh_tableView{
+-(JuEditTableView *)ju_parentTable{
     if(!ju_parentTable&&[[self juTableView] isKindOfClass:[JuEditTableView class]]){
         ju_parentTable=(JuEditTableView *)[self juTableView];
     }
@@ -222,28 +222,18 @@
 ///< 取消table选中
 -(void)juDeselectTable:(BOOL)isDrag{
     if (isDrag) {
-//        [self shSetTableIndex];///< 出现编辑table不可滑动
         self.isStartEdit=YES;
-        [self.sh_tableView deselectRowAtIndexPath:self.indexPath animated:NO];
+        [self.ju_parentTable deselectRowAtIndexPath:self.indexPath animated:NO];
     }
 }
-///< 设置当前row indexPath
-//-(void)shSetTableIndex{
-//    if ([self sh_tableView]) {
-//        __weak typeof(self) weakSelf=self;
-//        self.isStartEdit=YES;
-//        ju_parentTable.ju_editIndexPath= self.indexPath;
-//        ju_parentTable.juEndEdit=^(){///< 每次需要重新赋值
-//            [weakSelf juEndMove];
-//        };
-//    }
-//}
-
+-(void)dealloc{
+    ;
+}
 -(NSArray<UIView *> *)ju_leftRowAction{
-    return [self.sh_tableView juLeftRowAction:self.indexPath];
+    return [self.ju_parentTable juLeftRowAction];
 }
 -(NSArray<UIView *> *)ju_RightRowAction{
-    return [self.sh_tableView juRightRowAction:self.indexPath];
+    return [self.ju_parentTable juRightRowAction];
 }
 -(NSIndexPath *)indexPath{
     return [self juSubViewTable:ju_parentTable];
