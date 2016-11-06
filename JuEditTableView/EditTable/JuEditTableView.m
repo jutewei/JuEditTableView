@@ -70,6 +70,10 @@
         }
 //        NSLog(@"content");
     }
+    else if ([result.superview isKindOfClass:[UITableViewCell class]]&&self.ju_ContentView.isStartEdit){///防止拖动时点击当前拖动cell
+         [self.ju_ContentView juEndMove];
+        return nil;
+    }
     return result;
 }
 -(NSIndexPath *)indexPath{

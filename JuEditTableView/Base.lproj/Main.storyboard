@@ -34,7 +34,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="4Ow-05-DV8">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="bo3-h0-voL"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="bo3-h0-voL">
+                            <connections>
+                                <segue destination="iMY-Ki-LRu" kind="push" id="jjk-zx-lVs"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEU-WR-zjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,12 +91,15 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="iMY-Ki-LRu" kind="relationship" relationship="rootViewController" id="smb-7W-wGJ"/>
+                        <segue destination="4Qo-UC-cZi" kind="relationship" relationship="rootViewController" id="tBS-3K-Xpv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYM-Mk-fiF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-41" y="-439"/>
+            <point key="canvasLocation" x="1121" y="-189"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tBS-3K-Xpv"/>
+    </inferredMetricsTieBreakers>
 </document>

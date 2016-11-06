@@ -188,11 +188,13 @@
     if (ju_itemsTotalW==0) return;
     if (ju_EditStatus==JuEditStatusAnimate||ju_EditStatus==JuEditStatusNone) return;
     ju_EditStatus=JuEditStatusAnimate;
-     NSTimeInterval duration=MAX((ju_itemsTotalW-fabs(self.originX))/700.0, 0.2);
+     NSTimeInterval duration=MAX((ju_itemsTotalW-fabs(self.originX))/700.0, 0.3);
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(_juOpenRight?-1:1), 0);
     }completion:^(BOOL finished) {
-        ju_EditStatus=JuEditStatusOpened;
+        if (self.isStartEdit) {
+            ju_EditStatus=JuEditStatusOpened;
+        }
     }];
 }
 ///< 结束编辑
@@ -200,7 +202,7 @@
     if (ju_EditStatus==JuEditStatusClose) return;
     self.isCanEdit=NO;
     ju_EditStatus=JuEditStatusClose;
-    NSTimeInterval duration=MAX(fabs(self.originX)/700.0, 0.2);
+    NSTimeInterval duration=MAX(fabs(self.originX)/700.0, 0.3);
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
          self.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {

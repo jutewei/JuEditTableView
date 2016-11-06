@@ -80,9 +80,9 @@
         JuTableRowAction *btnItems=[JuTableRowAction rowActionWithTitle:items[i]  handler:^(JuTableRowAction *action, NSIndexPath *indexPath) {
             NSLog(@"当前行 %@ %@",action,indexPath);
         }];
-        if (i==0) {
-            btnItems.ju_itemWidth=100;
-        }
+       // if (i==0) {
+         //   btnItems.ju_itemWidth=100;
+        //}
         btnItems.backgroundColor=colors[i];
         [arrItemView addObject:btnItems];
     }
