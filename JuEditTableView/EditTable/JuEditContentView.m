@@ -46,8 +46,8 @@
 //}
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
-    if (result) {
-        if (ju_EditStatus>=JuEditStatusAnimate&&ju_EditStatus<=JuEditStatusClose) {
+    if (result) {///<手指离开时正在执行动画
+        if (ju_EditStatus>=JuEditStatusOpening&&ju_EditStatus<=JuEditStatusCloseing) {
             [self juEndMove];
             return nil;
         }
@@ -88,7 +88,7 @@
     }
     else if(pan.state==UIGestureRecognizerStateBegan){
         viewOriginX=pan.view.originX;
-        ju_EditStatus=JuEditStatusFirstDrag;
+        ju_EditStatus=JuEditStatusDragBegan;
     }
     else{
         if (fabs(viewOriginX)>0) {
@@ -97,11 +97,11 @@
         }
         
         CGFloat translationX = [pan translationInView:pan.view].x;
-        if(pan.state==UIGestureRecognizerStateChanged&&ju_EditStatus==JuEditStatusFirstDrag){///< 获取滑动方向
+        if(pan.state==UIGestureRecognizerStateChanged&&ju_EditStatus==JuEditStatusDragBegan){///< 获取滑动方向
             ju_EditStatus=[self juSetRowActions:translationX<0];
         }
 
-        if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusRight&&translationX<0)||(ju_EditStatus==JuEditStatusLeft&&translationX>0)) {///< 不能拖拽或者拖拽方向与开始相反
+        if (ju_EditStatus==JuEditStatusNone||(ju_EditStatus==JuEditStatusDragRight&&translationX<0)||(ju_EditStatus==JuEditStatusDragLeft&&translationX>0)) {///< 不能拖拽或者拖拽方向与开始相反
             pan.view.transform = CGAffineTransformMakeTranslation(MIN(translationX*0.4, 15), 0);
             return;
         }
@@ -161,7 +161,7 @@
     }
     ju_viewBack.ju_Width.constant=itemLeft;
     ju_itemsTotalW=itemLeft;
-    return isLeft?JuEditStatusLeft:JuEditStatusRight;
+    return isLeft?JuEditStatusDragLeft:JuEditStatusDragRight;
 }
 ///<点击开启
 -(void)setJuOpenRight:(BOOL)juOpenRight{
@@ -175,7 +175,7 @@
 -(void)juStartEndMove:(BOOL)open{
     if (open) {
         CGFloat originx=self.originX;///<防止左滑又右滑
-        if ((ju_EditStatus==JuEditStatusRight&&originx<0)||(ju_EditStatus==JuEditStatusLeft&&originx>0)) {
+        if ((ju_EditStatus==JuEditStatusDragRight&&originx<0)||(ju_EditStatus==JuEditStatusDragLeft&&originx>0)) {
             [self juEndMove];
             return;
         }
@@ -186,8 +186,8 @@
 }
 -(void)juStartMove{
     if (ju_itemsTotalW==0) return;
-    if (ju_EditStatus==JuEditStatusAnimate||ju_EditStatus==JuEditStatusNone) return;
-    ju_EditStatus=JuEditStatusAnimate;
+    if (ju_EditStatus==JuEditStatusOpening||ju_EditStatus==JuEditStatusNone) return;
+    ju_EditStatus=JuEditStatusOpening;
      NSTimeInterval duration=MAX((ju_itemsTotalW-fabs(self.originX))/700.0, 0.3);
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(ju_itemsTotalW*(_juOpenRight?-1:1), 0);
@@ -199,9 +199,9 @@
 }
 ///< 结束编辑
 -(void)juEndMove{
-    if (ju_EditStatus==JuEditStatusClose) return;
+    if (ju_EditStatus==JuEditStatusCloseing) return;
     self.isCanEdit=NO;
-    ju_EditStatus=JuEditStatusClose;
+    ju_EditStatus=JuEditStatusCloseing;
     NSTimeInterval duration=MAX(fabs(self.originX)/700.0, 0.3);
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
          self.transform = CGAffineTransformIdentity;
