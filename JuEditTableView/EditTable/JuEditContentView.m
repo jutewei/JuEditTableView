@@ -46,8 +46,8 @@
 //}
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
-    if (result) {///<手指离开时正在执行动画
-        if (ju_EditStatus>=JuEditStatusOpening&&ju_EditStatus<=JuEditStatusCloseing) {
+    if (result) {///<拖动结束如果处理编辑状态点击当前cell关闭编辑
+        if (ju_EditStatus==JuEditStatusOpening||ju_EditStatus==JuEditStatusOpened) {
             [self juEndMove];
             return nil;
         }
@@ -91,7 +91,7 @@
         ju_EditStatus=JuEditStatusDragBegan;
     }
     else{
-        if (fabs(viewOriginX)>0) {
+        if (fabs(viewOriginX)>0) {///< 不在起始位置结束编辑
             [self juEndMove];
             return;
         }

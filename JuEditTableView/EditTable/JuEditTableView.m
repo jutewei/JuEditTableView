@@ -39,7 +39,7 @@
     return self;
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if (self.ju_ContentView.isStartEdit&&![self.indexPathsForVisibleRows containsObject:ju_lastIndexPath]) {
+    if (self.ju_ContentView.isStartEdit&&![self.indexPathsForVisibleRows containsObject:ju_lastIndexPath]) {///< 拖动编辑是到屏幕外关闭编辑
         [self.ju_ContentView juEndMove];
     }
 //    if ([keyPath isEqualToString:@"state"]) {
@@ -52,10 +52,10 @@
 - (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event{
     if (self.ju_ContentView.isStartEdit) {
          CGRect rectInTableView = [self rectForRowAtIndexPath:self.indexPath];
-        if (point.y>CGRectGetMinY(rectInTableView)&&point.y<CGRectGetMaxY(rectInTableView)) {
+        if (point.y>CGRectGetMinY(rectInTableView)&&point.y<CGRectGetMaxY(rectInTableView)) {///< 编辑是只有该行有效
             ju_lastIndexPath=self.indexPath;
             return YES;
-        }else{
+        }else{///< 其他地方关闭编辑状态
              [self.ju_ContentView juEndMove];
             return NO;
         }
@@ -64,7 +64,7 @@
 }
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
-    if (result.superview.tag==1989918) {///<
+    if (result.superview.tag==1989918) {///<除JuTableRowAction其他编辑点击关闭编辑状态
         if (![result isKindOfClass:[JuTableRowAction class]]) {
              [self.ju_ContentView juEndMove];
         }
